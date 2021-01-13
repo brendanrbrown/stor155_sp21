@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Section 1: observations and variables</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Section 1: observations and variables
+## <br/>STOR 155.02, Spring ’21
+### updated 2021-01-13
+
+---
+
+class: left, middle
+
+
+
+## What you will learn
+
+- basic terminology of data and samples
+- framework in which to think about all work in this course
+
+---
+class: left, top
+## Big picture
+
+### Our perspective: using data to learn about some aspect of the world
+
+### Often trying to answer a specific question
+
+#### but I say 'learn' because definitive answers can be elusive
+
+
+### But what *is* data? And *how* do we use it to learn?
+
+---
+class: left, top
+## Some terms to get our bearings
+
+### *population*: group of people/places/things you hope to learn about
+
+#### national economies, elderly U.S. residents, north atlantic right whales, cat pictures online ...
+
+### *sample*: subset for which you have data. sometimes sample = population!
+
+### *observation*: unit of a single element in data
+
+### *variable*: characteristic of each observation in the data
+
+---
+class: left, top
+## Easier to understand in spreadsheet aka 'dataframe' terms
+
+.pull-left[
+#### obvservation is a row 
+
+#### variable is a column]
+
+.pull-right[
+![](https://pandas.pydata.org/docs/_images/01_table_dataframe1.svg)
+]
+
+
+---
+class: center, top
+
+## Example: measurements for a sample of irises
+
+| Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species    |
+|------------:|-----------:|------------:|-----------:|:----------|
+|          6.7|         3.0|          5.0|         1.7|versicolor |
+|          4.8|         3.4|          1.6|         0.2|setosa     |
+|          4.9|         2.4|          3.3|         1.0|versicolor |
+|          6.1|         2.9|          4.7|         1.4|versicolor |
+|          5.0|         3.5|          1.3|         0.3|setosa     |
+|          5.9|         3.2|          4.8|         1.8|versicolor |
+|          7.0|         3.2|          4.7|         1.4|versicolor |
+|          5.6|         3.0|          4.1|         1.3|versicolor |
+
+
+#### what is an example of a variable?
+
+#### what is an observation in the data?
+
+---
+class: left, top
+
+## Kinds of variables
+
+.pull-left[
+### quantitative:
+
+- numerical values for which arithmetic makes sense
+- e.g. heights, weights, years, dates, counts
+]
+
+.pull-right[
+### categorical
+
+- places observation into one of two or more groups
+- typically non-numeric but not always
+- arithmetic operations do not make sense: "best" + "worst" = "best"?
+]
+
+---
+class: center, top
+
+### back to our example
+
+| Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species    |
+|------------:|-----------:|------------:|-----------:|:----------|
+|          6.7|         3.0|          5.0|         1.7|versicolor |
+|          4.8|         3.4|          1.6|         0.2|setosa     |
+|          4.9|         2.4|          3.3|         1.0|versicolor |
+|          6.1|         2.9|          4.7|         1.4|versicolor |
+|          5.0|         3.5|          1.3|         0.3|setosa     |
+|          5.9|         3.2|          4.8|         1.8|versicolor |
+|          7.0|         3.2|          4.7|         1.4|versicolor |
+|          5.6|         3.0|          4.1|         1.3|versicolor |
+
+
+#### which variables are quantitative?
+
+#### which are categorical?
+
+---
+class: center, top
+### A trickier case! Don't let column names fool you.
+#### world bank statistics of female life expectancy at birth by year, for select countries
+
+| year| Azerbaijan|  China| Ireland|   Mali| Thailand| United.States| Zimbabwe|
+|----:|----------:|------:|-------:|------:|--------:|-------------:|--------:|
+| 1960|     64.168| 45.191|  71.707| 29.026|   57.059|          73.1|   54.672|
+| 1961|     64.403| 45.497|  71.941| 29.210|   57.617|          73.6|   55.141|
+| 1962|     64.629| 46.243|  72.147| 29.432|   58.151|          73.5|   55.609|
+| 1963|     64.852| 47.486|  72.334| 29.704|   58.653|          73.4|   56.071|
+
+### what is the
+population?
+sample?
+observations?
+variables?
+
+
+---
+class: left, top
+## Try to think of data in these terms even when just reading about it
+
+### When reading an article presenting information based on data, ask yourself
+
+#### what kinds of variables do they need to make these statements?
+
+#### what might be the observations in this dataset?
+
+#### do they have data on the whole population or just a sample?
+
+#### later we'll talk more about how to evaluate whether the data are 'good' or not
+
+---
+class: left, top
+## Example of good data use
+
+#### [Land-grant universities still profiting from indigenous homelands (High Country News)](https://www.hcn.org/articles/indigenous-affairs-the-land-grant-universities-still-profiting-off-indigenous-homelands)
+
+&gt;&gt; In the course of a two-year investigation into how the United States expropriated nearly 11 million acres of Indigenous lands to build today’s celebrated land-grant university system, High Country News found that at least 16 land-grant universities in the West and Midwest — nearly a third of the schools in the system — still retain more than a half-million acres.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "solarized-light",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

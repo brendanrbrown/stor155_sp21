@@ -1,0 +1,161 @@
+---
+title: "Section 1: observations and variables"
+subtitle: "<br/>STOR 155.02, Spring '21"
+date: "updated `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: solarized-light
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: left, middle
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#https://pkg.garrickadenbuie.com/xaringanthemer/articles/themes.html
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
+library(xaringanthemer)
+library(showtext)
+
+style_solarized_light()
+# style_mono_accent(
+#   base_color = "#1c5253",
+#   header_font_google = google_font("Josefin Sans"),
+#   text_font_google   = google_font("Montserrat", "300", "300i"),
+#   code_font_google   = google_font("Fira Mono")
+# )
+```
+
+## What you will learn
+
+- basic terminology of data and samples
+- framework in which to think about all work in this course
+
+---
+class: left, top
+## Big picture
+
+### Our perspective: using data to learn about some aspect of the world
+
+### Often trying to answer a specific question
+
+#### but I say 'learn' because definitive answers can be elusive
+
+
+### But what *is* data? And *how* do we use it to learn?
+
+---
+class: left, top
+## Some terms to get our bearings
+
+### *population*: group of people/places/things you hope to learn about
+
+#### national economies, elderly U.S. residents, north atlantic right whales, cat pictures online ...
+
+### *sample*: subset for which you have data. sometimes sample = population!
+
+### *observation*: unit of a single element in data
+
+### *variable*: characteristic of each observation in the data
+
+---
+class: left, top
+## Easier to understand in spreadsheet aka 'dataframe' terms
+
+.pull-left[
+#### obvservation is a row 
+
+#### variable is a column]
+
+.pull-right[
+![](https://pandas.pydata.org/docs/_images/01_table_dataframe1.svg)
+]
+
+
+---
+class: center, top
+
+## Example: measurements for a sample of irises
+```{r}
+set.seed(1305)
+d <- iris[sample.int(100, 8), ]
+knitr::kable(d, row.names = F)
+```
+
+
+#### what is an example of a variable?
+
+#### what is an observation in the data?
+
+---
+class: left, top
+
+## Kinds of variables
+
+.pull-left[
+### quantitative:
+
+- numerical values for which arithmetic makes sense
+- e.g. heights, weights, years, dates, counts
+]
+
+.pull-right[
+### categorical
+
+- places observation into one of two or more groups
+- typically non-numeric but not always
+- arithmetic operations do not make sense: "best" + "worst" = "best"?
+]
+
+---
+class: center, top
+
+### back to our example
+```{r}
+knitr::kable(d, row.names = F)
+```
+
+
+#### which variables are quantitative?
+
+#### which are categorical?
+
+---
+class: center, top
+### A trickier case! Don't let column names fool you.
+#### world bank statistics of female life expectancy at birth by year, for select countries
+```{r}
+d <- read.csv('https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/data/wb_lifexpec.csv')
+knitr::kable(head(d, 4), row.names = F)
+```
+
+### what is the
+population?
+sample?
+observations?
+variables?
+
+
+---
+class: left, top
+## Try to think of data in these terms even when just reading about it
+
+### When reading an article presenting information based on data, ask yourself
+
+#### what kinds of variables do they need to make these statements?
+
+#### what might be the observations in this dataset?
+
+#### do they have data on the whole population or just a sample?
+
+#### later we'll talk more about how to evaluate whether the data are 'good' or not
+
+---
+class: left, top
+## Example of good data use
+
+#### [Land-grant universities still profiting from indigenous homelands (High Country News)](https://www.hcn.org/articles/indigenous-affairs-the-land-grant-universities-still-profiting-off-indigenous-homelands)
+
+>> In the course of a two-year investigation into how the United States expropriated nearly 11 million acres of Indigenous lands to build today’s celebrated land-grant university system, High Country News found that at least 16 land-grant universities in the West and Midwest — nearly a third of the schools in the system — still retain more than a half-million acres.

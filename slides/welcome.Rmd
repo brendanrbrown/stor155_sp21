@@ -10,8 +10,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-
-background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+class: left, middle
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 #https://pkg.garrickadenbuie.com/xaringanthemer/articles/themes.html
@@ -25,12 +24,6 @@ style_solarized_light()
 #   code_font_google   = google_font("Fira Mono")
 # )
 ```
-???
-
-Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
-
----
-class: left, middle
 
 ## Walk away from this course with the ability to
 
