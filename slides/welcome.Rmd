@@ -1,0 +1,144 @@
+---
+title: "Welcome"
+subtitle: "<br/>STOR 155.02, Spring '21"
+date: "updated `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: solarized-light
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#https://pkg.garrickadenbuie.com/xaringanthemer/articles/themes.html
+options(htmltools.dir.version = FALSE)
+library(xaringanthemer)
+style_solarized_light()
+# style_mono_accent(
+#   base_color = "#1c5253",
+#   header_font_google = google_font("Josefin Sans"),
+#   text_font_google   = google_font("Montserrat", "300", "300i"),
+#   code_font_google   = google_font("Fira Mono")
+# )
+```
+???
+
+Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
+
+---
+class: left, middle
+
+## Walk away from this course with the ability to
+
+- get more from and be more critical of the numerical and statistical information that surrounds you
+
+- make basic plots and summaries of real datasets, in excel or python
+
+- understand the fundamentals of how probability shapes our world
+
+- and of how some common statistical or probabilistic models work
+
+---
+class: left, middle
+
+## for example, we will address questions like
+
+- XXXX
+
+- XXXX
+
+- if I test negative what is the chance I actually am covid-free?
+
+
+#### see the syllabus for a list of topics
+
+---
+class: left, middle
+
+## I'll strive to share a great range of data and examples, e.g. on
+
+- greek life at Duke
+
+- simulated physical processes
+
+- life expectancy and health spending for each country and 30+ years
+
+- air quality in my own living room
+
+---
+class: left, middle
+
+## I will not be covid-obsessed
+
+## but I can't ignore it: there is too much important stuff happening right now that this course can help you understand at least a little better
+
+
+---
+class: inverse, center, middle
+
+# Materials and software
+
+
+---
+class: left, middle
+
+## XXX textbook
+
+
+## XXX excel or python
+
+
+---
+class: left, middle
+
+## XXX on the choice
+
+
+
+
+
+---
+class: inverse, center, middle
+
+# How you'll be evaluated
+
+---
+class: left, middle
+
+## Midterm and final replaced with two individual data-focused projects
+
+Too many students will cheat on tests in an online-only environment. I would have to track them down and give them zeros, if not worse. I would not be lenient.
+
+That would make me :-(
+
+It would make you :-(
+
+So let's be :-) and find a more constructive way to help you learn what's important in the course
+
+#### more on this in a later class and in the syllabus
+
+
+---
+class: left, middle
+
+## XXX One hw per week on webassign?
+
+## XX one data exercise per week --- give details in syllabyus --- look at the explicit instructions
+
+---
+class: inverse, center, middle
+
+# Day-to-day
+
+
+---
+class: left, middle
+
+## Tuesday class: XXXX
+
+
+## Thursday class: XXX
