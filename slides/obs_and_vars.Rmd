@@ -154,8 +154,23 @@ class: left, top
 
 ---
 class: left, top
-## Example of good data use
+## Example
 
 #### [Land-grant universities still profiting from indigenous homelands (High Country News)](https://www.hcn.org/articles/indigenous-affairs-the-land-grant-universities-still-profiting-off-indigenous-homelands)
 
->> In the course of a two-year investigation into how the United States expropriated nearly 11 million acres of Indigenous lands to build today’s celebrated land-grant university system, High Country News found that at least 16 land-grant universities in the West and Midwest — nearly a third of the schools in the system — still retain more than a half-million acres.
+>> In the course of a two-year investigation into how the United States expropriated nearly 11 million acres of Indigenous lands to build today’s celebrated land-grant university system, High Country News found that at least 16 land-grant universities in the West and Midwest — nearly a third of the schools in the system — still retain more than a half-million acres ... which generated at least $8.7 million in FY2019.
+
+
+.pull-left[
+### The summary dataset they used is in the story link, and at the [course github site](https://github.com/brendanrbrown/stor155_sp21/tree/main/data)
+]
+
+.pull-right[
+### the full dataset is at [HCN's github site](https://github.com/HCN-Digital-Projects/landgrabu-data)
+]
+
+
+
+---
+class: inverse, center, middle
+## Group breakout exercise

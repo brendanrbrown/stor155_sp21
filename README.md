@@ -1,5 +1,4 @@
-# Stor155
-### section 2, spring 2021
+# Stor155: section 2, spring 2021
 This repository primarily serves as an easy way for me to share data with students in the course, and also holds other course-related content.
 
 ## Get data for homework/exercises
