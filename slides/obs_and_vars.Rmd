@@ -1,5 +1,5 @@
 ---
-title: "Section 1: observations and variables"
+title: "Observations and variables"
 subtitle: "<br/>STOR 155.02, Spring '21"
 date: "updated `r Sys.Date()`"
 output:
@@ -32,6 +32,11 @@ style_solarized_light()
 
 - basic terminology of data and samples
 - framework in which to think about all work in this course
+
+## Resources
+
+- Textbook ch XXX
+
 
 ---
 class: left, top
@@ -174,3 +179,8 @@ class: left, top
 ---
 class: inverse, center, middle
 ## Group breakout exercise
+
+---
+class: center, middle
+
+![](gudetama2.png)

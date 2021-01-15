@@ -2,3 +2,10 @@ World Bank
 https://data.worldbank.org/
 
 Federal Reserve
+
+
+NOAA
+https://www.ncdc.noaa.gov/cdo-web/datatools
+
+EPA
+https://www.epa.gov/outdoor-air-quality-data

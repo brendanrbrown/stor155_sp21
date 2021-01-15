@@ -25,84 +25,269 @@ style_solarized_light()
 # )
 ```
 
-## Walk away from this course with the ability to
+## What I will cover live today
 
-- get more from and be more critical of the numerical and statistical information that surrounds you
+.pull-left[
+#### course goals
 
-- make basic plots and summaries of real datasets, in excel or python
+#### homework and lectures
+]
 
-- understand the fundamentals of how probability shapes our world
+.pull-right[
+#### materials, resources, software
 
-- and of how some common statistical or probabilistic models work
+#### assessment and grades
+]
+
+
+## The rest
+
+#### office hours, etc.
+
+#### please read for yourself
+
+#### in the syllabus
+
+
+---
+class: inverse, center, middle
+
+## Course goals
+
+---
+class: left, middle
+## Walk away from this course with
+
+- data literacy: get more from and be more critical of the numerical and statistical information you consume
+
+- ability to make basic plots and summaries of real datasets, in excel or python, and
+
+- to understand the fundamentals of how probability shapes our world
+
+- and of how a few common statistical models work
 
 ---
 class: left, middle
 
-## for example, we will address questions like
+## For example, we will address questions like
 
-- XXXX
-
-- XXXX
+- if average income increases, what does that say about the economy?
 
 - if I test negative what is the chance I actually am covid-free?
 
+- how strongly related are air quality and weather? does one *cause* the other?
 
-#### see the syllabus for a list of topics
+- generally: do the data justify the claims?
+
+## See the syllabus for a list of topics
 
 ---
 class: left, middle
 
-## I'll strive to share a great range of data and examples, e.g. on
+## I'll strive to share diverse data and examples, e.g.
 
 - greek life at Duke
 
 - simulated physical processes
 
-- life expectancy and health spending for each country and 30+ years
+- national life expectancy across 50+ years
 
 - air quality in my own living room
 
 ---
-class: left, middle
+class: center, top
 
-## I will not be covid-obsessed
+.pull-left[
+## We won't be covid obsessed
 
-## but I can't ignore it: there is too much important stuff happening right now that this course can help you understand at least a little better
+## but I can't ignore it
+
+#### there is too much important stuff happening right now 
+#### and this course can help you understand it at least a little better
+
+*image credit: deviantart.com/atsushika28*
+]
+
+.pull-right[
+![](gudetama.png)
+]
+
+---
+class: inverse, center, middle
+
+# Homework and lectures
+
+---
+class: left, top
+### Each week
+
+.pull-left[
+### Concepts homework: webassign
+
+- **one-two**, usually a couple of days till due
+
+- resource: https://webassign.net/
+
+- class key to sign up: Sakai
+
+- **daily help sessions:** 7-8 pm Sunday-Thursday, link to meeting on Sakai
+
+- help sessions are for webassign or general course concepts, not data hw!
+]
+
+.pull-right[
+### Data homework: excel or python
+
+- **one**, usually due by Tuesday class
+
+- resource: [course github](https://github.com/brendanrbrown/stor155_sp21)
+
+- small exercises with real datasets
+
+- **you choose** to do in excel (default) or python
+
+- treated equally no matter the choice
+
+- graded on how well you answer the Qs (with justification) not program used
+]
+
+---
+class: left, top
+.pull-left[
+### Choose excel if you
+
+- want to do well in the course without working more than needed
+
+- **don't expect to use data much after this course**
+
+- are weirded out about by having this choice
+
+- **want more help**: from me or assistant
+]
+
+.pull-right[
+### Choose python if you
+
+- want to **work with data after this course**
+
+- not just for math/stat majors! all disciplines can use data
+
+- are **willing to put in extra work** for a bigger payoff: this skill can serve you for life
+
+- **no help for installation/computer issues**
+
+- **help from me (not TA) with coding needed for the class** in pandas and numpy (python packages)
+]
+
+### You can try one then switch, but I recommend settling on one after the first 2 weeks of class
+
+---
+class: left, top
+
+### No extensions, except under exceptional circumstances (see syllabus)
+
+### Lowest homework grade (across all) is dropped
+
+### All data homework output must be clearly supported by your work
+
+#### You do not need to do anything extra to do this
+
+#### Automatic zero if any item in the homework is not supported by your own work
+
+#### See the syllabus for details on what this means for excel/python
+
+---
+class: left, top
+.pull-left[
+### Tuesday: lecture
+
+- **attendance required** (talk to me if in different timezone)
+
+- recorded, links on Sakai
+
+- start with lecture
+
+- end with group exercise and quiz through poll.unc.edu
+]
+
+.pull-right[
+### Thursday: data lab
+
+- **attendance suggested**
+
+- not recorded
+
+- demo and help for data homework
+
+- I start the homework, you finish
+
+- **excel version:** 12:30-1:05 pm
+
+- **python version:**1:10-1:45 pm
+
+]
+
+---
+class: left, top
+## Email me by 5:30 pm on a given day and you will get a response that day
+
+#### if you email me later than that, most likely you **will not get a response** till the end of the next day
+
+#### this is to preserve my sanity and ensure you have a reliable, predictable way to get my help
+
+---
+class: inverse, center, middle
+
+# Materials, resources and software
+
+---
+class: left, top
+
+### Sakai is for:
+
+- links to meetings and recordings
+- syllabus 
+- Webassign keys
+- announcements
+- textbook
+
+### Webassign is for:
+
+- webassign homework...
+
+
+### Poll Everywhere is for:
+
+- in-class mini quizzes
+- on Tuesdays only
+
+---
+class: left, top
+### Github is for:
+
+- datasets
+- instructions for excel/python homework
+- cookbooks for excel/python
+
+### Office 365 (office.com) is for:
+
+- using excel in browser (I do this)
+- submitting data homeworks
 
 
 ---
 class: inverse, center, middle
 
-# Materials and software
-
-
----
-class: left, middle
-
-## XXX textbook
-
-
-## XXX excel or python
-
+# Assessment and grades
 
 ---
-class: left, middle
+class: left, top
 
-## XXX on the choice
+### Midterms and final replaced with individual data-focused projects
 
+Details in the syllabus and as deadlines approach
 
-
-
-
----
-class: inverse, center, middle
-
-# How you'll be evaluated
-
----
-class: left, middle
-
-## Midterm and final replaced with two individual data-focused projects
+### Tests are not the best way to evaluate your knowledge in this course, in my opinion
 
 Too many students will cheat on tests in an online-only environment. I would have to track them down and give them zeros, if not worse. I would not be lenient.
 
@@ -110,28 +295,45 @@ That would make me :-(
 
 It would make you :-(
 
-So let's be :-) and find a more constructive way to help you learn what's important in the course
+So let's be :-) and find a more constructive way to help you learn what's important in the class
 
-#### more on this in a later class and in the syllabus
-
-
----
-class: left, middle
-
-## XXX One hw per week on webassign?
-
-## XX one data exercise per week --- give details in syllabyus --- look at the explicit instructions
-
----
-class: inverse, center, middle
-
-# Day-to-day
 
 
 ---
-class: left, middle
+class: center, middle
 
-## Tuesday class: XXXX
+.pull-left[
+```{r, echo = F}
+d = data.frame(item = c("quizzes/attendance", "data hw", "webassign hw", "project pt 1", "project pt 2"),
+               weight = c(0.1, 0.2, 0.2, 0.2, 0.3))
+knitr::kable(d, row.names = F)
+```
+]
+.pull-right[
+```{r, echo = F}
+d = data.frame(grade = c("A", "A-", "B+", "B", "B-", "..."),
+               range = c("score >= 93", "90 <= score < 93",
+                         "86.666 <= score < 90", "83.333 <= score < 86.666",
+                         "80 <= score < 83.333", "..."))
+knitr::kable(d, row.names = F)
+```
+]
 
+---
+class: left, top
 
-## Thursday class: XXX
+## Student support
+
+I will do my best to keep you up to date with university policy changes that affect this class, as the semester progresses.
+
+Feel free to contact me throughout the semester with questions on what support might be available to you, without needing to disclose personal information.
+
+.pull-left[
+### CAPS: counseling and psychological services
+
+### Title IX anti-discrimination protection
+]
+
+.pull-right[
+### Covid-related grading accommodations
+]

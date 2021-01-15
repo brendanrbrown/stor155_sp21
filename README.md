@@ -1,6 +1,31 @@
 # Stor155: section 2, spring 2021
 This repository primarily serves as an easy way for me to share data with students in the course, and also holds other course-related content.
 
+## Getting started
+
+#### using excel (default):
+I will be using the Office 365 online version of excel. If your internet connection is slow, you should consider downloading the desktop version of excel from software.sites.unc.edu if you don't already have it.
+
+- **log in** to Office 365 with **username onyen@ad.unc.edu** and password at office, and select the excel app from the left-hand menu
+- or **access onedrive / excel** directly in the top-left-hand menu of your email at live.unc.edu
+- **download the excel_cookbook.xlsx** from the excel_help folder at github.com/brendanrbrown/stor155_sp21
+- **upload this file to Office 365** and test it out!
+
+**Note:** If you care about not being tracked online I suggest you use a browser such as Brave or Firefox (or Duckduckgo on mobile), which block many trackers automatically. The office.com and the live.unc.edu related sites have a large number of Microsoft-related trackers that have nothing to do with providing a useful service to you.
+
+#### using python:
+This will help you get started. Remember, it is \textbf{your responsibility} to handle any issues with installation, and any future computer issues related to running this software. I will **support you only in learning the coding tasks needed to do the work in this course.**
+
+That said, this procedure should be smooth and easy for almost everyone.
+
+- **install** Anaconda for Python 3.x (3.8 as of this syllabus writing) for your operating system at this link: https://www.anaconda.com/products/individual
+- once installed, **open the Anaconda Navigator** application
+- select **Jupyter Lab** or Jupyter Notebook from the Anaconda Navigator menu
+- Jupyter Lab lets you create notebooks and also to manage your related files. Jupyter Notebook takes you straight to a single notebook. A notebook is the best way to run and display code for this course.
+- **download the pandas_cookbook.ipynb** file in the notebooks folder of github.com/brendanrbrown/stor155_sp21 notebook to check that everything went smoothly
+- test it out!
+
+
 ## Get data for homework/exercises
 
 #### if using excel (default):
