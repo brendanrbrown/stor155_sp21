@@ -184,3 +184,6 @@ class: inverse, center, middle
 class: center, middle
 
 ![](gudetama2.png)
+
+???
+image credit: deviantart.com/atsushika28

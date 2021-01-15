@@ -1,5 +1,5 @@
 # Stor155: section 2, spring 2021
-This repository primarily serves as an easy way for me to share data with students in the course, and also holds other course-related content.
+This repository primarily serves as an easy way for me to share data with students in the course, and also holds some resources for completing data homework.
 
 ## Getting started
 
@@ -79,18 +79,27 @@ d.head()
 Grades will appear on sakai
 
 #### if using excel (default):
-1. upload your excel workbook to Office 365 (if not already there).
+1. upload your excel workbook to Office 365 (if not already there). See the instructions under 'Getting started' above for how to log on.
 2. open it, and click the 'share' link in the top right corner
 3. enter my UNC email address (see the syllabus on Sakai) and click 'send'
 
 
 #### if using python:
+1. open your Jupyter notebook
+2. select the Kernel menu item up top, and select 'Restart kernel and run all cells'. This restarts your session and runs all code cells from top to bottom, a great way to check for silly errors (I make them all the time).
+3. Check for errors: If you did something like refer to an object name before creating it, you might get an error. This is a good chance to fix them.
+4. Log onto Office 365 (see 'Getting started' excel instructions up top) and navigate to one drive
+5. Upload your file to one drive
+6. Click the share button
+7. enter my UNC email address (see the syllabus on Sakai) and click 'send'
 
 
 
-
-
-### Go to Sakai instead for
+## Go to Sakai instead for
 
 - syllabus
+- lecture slides
 - links to video recordings of lectures
+- links to all other class resources
+
+https://sakai.unc.edu/portal/site/stor15502_sp21
