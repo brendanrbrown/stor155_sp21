@@ -124,19 +124,26 @@ class: left, top
 ]
 
 ---
+background-image: url(https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/fakebook_select_cat.jpeg)
+background-position: 50% 50%
 class: left, top
 
 
-### Bar chart of observations, select categories
-```{r}
-library(readr)
-library(dplyr)
-library(ggplot2)
-fb <- read_csv("https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/data/fakebook_buzzfeed_2018.csv")
-```
+---
+class: left, top
 
-```{r, dpi=300, fig.heigh=10, fig.width=12}
-filter(fb, category %in% c("Obama Spy", "Crime", "Medical", "Business", "Sports", "Music")) %>%
-  ggplot(aes(x = category)) + geom_bar(fill = '#dc322f') + theme_bw() + ggtitle("Frequency of fake news postings on Facebook", subtitle = "Buzzfeed news, 2018")
-```
+### There are too many weird small categories to show nicely, so I picked some I was interested in.
 
+### but does it look like if we isolate the most common posting categories?
+
+---
+background-image: url(https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/fakebook_over500_cat.jpeg)
+background-position: 50% 50%
+class: left, top
+
+---
+class: left, top
+
+#### Another bar plot from the article
+
+![](https://img.buzzfeed.com/buzzfeed-static/static/2018-12/28/14/asset/buzzfeed-prod-web-02/sub-buzz-719-1546024227-1.jpg?downsize=800:*&output-format=auto&output-quality=auto)
