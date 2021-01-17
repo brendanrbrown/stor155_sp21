@@ -9,3 +9,8 @@ https://www.ncdc.noaa.gov/cdo-web/datatools
 
 EPA
 https://www.epa.gov/outdoor-air-quality-data
+
+
+Buzzfeed
+https://github.com/BuzzFeedNews/2018-12-fake-news-top-50
+fakebook_buzzfeed_2018.csv

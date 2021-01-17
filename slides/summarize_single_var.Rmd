@@ -30,9 +30,109 @@ style_solarized_light()
 
 ## What you will learn
 
-- xxx
-- xxx
+- xxx sample distributions
+- xxx plots: bar graphs, histograms
+- xxx centrality statistics: mean, median
+- xxx spread statistics: range, quantiles, variance and standard deviation
+
+## Resources
+
+- xxx textbook
+
+---
+class: inverse, center, middle
+
+# Looking at data
 
 ---
 class: left, top
-## XXX
+## Example data for today: Duke
+
+
+
+---
+class: left, top
+
+## Definition: sample distribution
+>> The sample distribution of a variable tells us what values it takes and how often it takes these values in our dataset.
+
+
+#### this is about the values a variable actually has in your data
+
+#### does *not* tell you about all possible values your variable could have if you got more or different data
+
+---
+class: left, top
+## Looking at sample distributions: depends on the variable type
+
+.pull-left[
+### Categorical:
+
+#### bar graphs
+
+#### pie charts
+]
+
+
+.pull-right[
+### Numeric/quantitative:
+
+#### histograms
+]
+
+---
+class: left, top
+## Looking at categorical data
+
+### frequency statistics
+
+- **frequency** of a category is the **number of observations** in that category
+- **relative frequency** is number of **observations in a category / total** number of observations 
+
+### bar graph
+
+- bar height represents frequency or relative frequency for each category
+- the frequency must first be computed
+
+### pie chart
+
+- area of a pie slice represents the relative frequency of a category
+- these can be **hard to read** because areas are difficult to estimate by eye
+- bar charts preferred usually
+
+---
+class: left, top
+## Example: Fake news on facebook
+
+.pull-left[
+### dataset
+
+- data on Facebook popularity of 50 most popular posts by fake news websites in 2018
+- identified and collected by Buzzfeed News
+- [Biggest fake news hits on Facebook in 2018](https://www.buzzfeednews.com/article/craigsilverman/facebook-fake-news-hits-2018)
+- source: [Buzzfeed github site](https://github.com/BuzzFeedNews/2018-12-fake-news-top-50)
+- dataset on our course github page as well
+]
+
+
+.pull-right[
+### observations and variables
+
+- each row is represents an article
+- `fb_engagement` is essentially number of likes post received
+- `category` is a buzzfeed-created categorical variable
+]
+
+---
+class: left, top
+
+## Bar chart of observations in each category
+```{r}
+library(readr)
+library(dplyr)
+library(stringr)
+library(purrr)
+bob <- read_csv("https://raw.githubusercontent.com/littlebuttermilk/ncssm_sessions/master/data/bob_ross_paintings.csv")
+```
+
+
