@@ -107,7 +107,7 @@ class: left, top
 .pull-left[
 ### dataset
 
-- data on Facebook popularity of 50 most popular posts by fake news websites in 2018
+- data on Facebook popularity of posts by fake news websites in 2018
 - identified and collected by Buzzfeed News
 - [Biggest fake news hits on Facebook in 2018](https://www.buzzfeednews.com/article/craigsilverman/facebook-fake-news-hits-2018)
 - source: [Buzzfeed github site](https://github.com/BuzzFeedNews/2018-12-fake-news-top-50)
@@ -126,13 +126,17 @@ class: left, top
 ---
 class: left, top
 
-## Bar chart of observations in each category
+
+### Bar chart of observations, select categories
 ```{r}
 library(readr)
 library(dplyr)
-library(stringr)
-library(purrr)
-bob <- read_csv("https://raw.githubusercontent.com/littlebuttermilk/ncssm_sessions/master/data/bob_ross_paintings.csv")
+library(ggplot2)
+fb <- read_csv("https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/data/fakebook_buzzfeed_2018.csv")
 ```
 
+```{r, dpi=300, fig.heigh=10, fig.width=12}
+filter(fb, category %in% c("Obama Spy", "Crime", "Medical", "Business", "Sports", "Music")) %>%
+  ggplot(aes(x = category)) + geom_bar(fill = '#dc322f') + theme_bw() + ggtitle("Frequency of fake news postings on Facebook", subtitle = "Buzzfeed news, 2018")
+```
 

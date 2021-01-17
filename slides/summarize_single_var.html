@@ -93,25 +93,35 @@ class: left, top
 
 ---
 class: left, top
-## Example: Bob ross paintings
+## Example: Fake news on facebook
 
 .pull-left[
 ### dataset
 
-- data on color usage and paintings for a long-running PBS show from 30+ years ago
-- available on twoinchbrush.com
-- scraped from there and put into a `csv` (spreadsheet) by [jwilber](https://github.com/jwilber/Bob_Ross_Paintings)
+- data on Facebook popularity of posts by fake news websites in 2018
+- identified and collected by Buzzfeed News
+- [Biggest fake news hits on Facebook in 2018](https://www.buzzfeednews.com/article/craigsilverman/facebook-fake-news-hits-2018)
+- source: [Buzzfeed github site](https://github.com/BuzzFeedNews/2018-12-fake-news-top-50)
+- dataset on our course github page as well
 ]
 
 
 .pull-right[
-### variables of interest
+### observations and variables
 
-- 
+- each row is represents an article
+- `fb_engagement` is essentially number of likes post received
+- `category` is a buzzfeed-created categorical variable
 ]
 
 ---
 class: left, top
+
+
+### Bar chart of observations, select categories
+
+
+![](summarize_single_var_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
