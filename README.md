@@ -14,7 +14,7 @@ I will be using the Office 365 online version of excel. If your internet connect
 **Note:** If you care about not being tracked online I suggest you use a browser such as Brave or Firefox (or Duckduckgo on mobile), which block many trackers automatically. The office.com and the live.unc.edu related sites have a large number of Microsoft-related trackers that have nothing to do with providing a useful service to you.
 
 #### using python:
-This will help you get started. Remember, it is \textbf{your responsibility} to handle any issues with installation, and any future computer issues related to running this software. I will **support you only in learning the coding tasks needed to do the work in this course.**
+This will help you get started. Remember, it is **your responsibility** to handle any issues with installation, and any future computer issues related to running this software. I will **support you only in learning the coding tasks needed to do the work in this course.**
 
 That said, this procedure should be smooth and easy for almost everyone.
 
