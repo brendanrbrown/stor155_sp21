@@ -35,7 +35,7 @@ style_solarized_light()
 
 ## Resources
 
-- Textbook ch XXX
+- Textbook ch 1.2.1, 1.2.2
 
 
 ---
@@ -136,7 +136,7 @@ d <- read.csv('https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main
 knitr::kable(head(d, 4), row.names = F)
 ```
 
-### what is the
+### what are
 population?
 sample?
 observations?
@@ -179,6 +179,19 @@ class: left, top
 ---
 class: inverse, center, middle
 ## Group breakout exercise
+
+
+---
+class: left, top
+
+## Poll closes at ________!
+
+## Poll everywhere link:
+https://PollEv.com/surveys/racOnNWA1PKjtDBeVQsNg/respond
+
+## You must be registered to submit a response!
+
+## Discuss with group but respond individually
 
 ---
 class: center, middle

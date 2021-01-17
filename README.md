@@ -45,9 +45,9 @@ Alternatively, you could navigate to onedrive in the left-hand menu and upload i
 
 1. click the 'data' folder link
 2. find the dataset you need. **click the .csv version link**
-3. in the preview pane, on the top right, click the 'raw' button
+3. in the preview pane, on the top right, click the **'raw' button**
 4. copy the url to the 'raw' icon
-5. add the code below to your Jupyter notebook for this assignment to load the data as a dataframe called d
+5. add the code below to your Jupyter notebook for this assignment to load the data as a dataframe called d (you could give it another name, but it is d in the example below)
 
 ```
 import pandas as pd
@@ -76,7 +76,7 @@ d.head()
 ```
 
 ## Instructions for submitting homework
-Grades will appear on sakai
+Grades will appear on Sakai.
 
 #### if using excel (default):
 1. upload your excel workbook to Office 365 (if not already there). See the instructions under 'Getting started' above for how to log on.
