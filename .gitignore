@@ -1,5 +1,5 @@
 */.ipynb_checkpoints
 # omit nb that has some homework solutions
-./notebooks/fakebook_figure.ipynb
+notebooks/fakebook_figure.ipynb
 # omit hw 1 prompt
-./hw_prompts/hw_1.ipynb
+hw_prompts/hw_1.ipynb
