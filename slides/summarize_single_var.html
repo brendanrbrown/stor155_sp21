@@ -21,14 +21,14 @@ class: left, middle
 
 ## What you will learn
 
-- xxx sample distributions
-- xxx plots: bar graphs, histograms
-- xxx centrality statistics: mean, median
-- xxx spread statistics: range, quantiles, variance and standard deviation
+- sample distributions
+- plots: bar graphs, histograms
+- centrality statistics: mean, median
+- spread statistics: range, percentiles (aka quantile), variance and standard deviation
 
 ## Resources
 
-- xxx textbook
+- Textbook ch 1.6.2-1.6.5 and 1.10
 
 ---
 class: inverse, center, middle
@@ -154,15 +154,16 @@ class: left, top
 ---
 class: left, top
 
-## Histogram
+## Histogram: looking at quantitative variable distributions
+
 
 .pull-left[
-- breaks the range of the values of a quantitative variable into intervals (bins) of a given width
-- displays only the frequencies or relative frequencies of the observations that fall into each interval
+- **breaks the range of the values into bins** (intervals) of a given width
+- displays frequencies or relative frequencies of the observations that fall into each interval
 ]
 .pull-right[
 - choose any convenient number of intervals of equal width
-- but **choice of width might affect how you interpret the data**
+- but choice of width might affect how you interpret the data
 ]
 
 ### Example: `fb_engagement` variable histogram with differing bin sizes
@@ -207,13 +208,13 @@ class: left, top
 
 - max value minus min
 
-### Nth quantile: 
+### Nth percentile (aka quantile): 
 
 - value defining a cutoff so that N percent (appropximately) of your data is below that value 
 
 ### Median: 
 
-- 50th quantile, half of the data is below this value, half above
+- 50th percentile, half of the data is below this value, half above
 ]
 .pull-right[
 
@@ -226,6 +227,15 @@ class: left, top
 
 - average squared distance of values from the mean. A way to think about how *spread out* the data are
 ]
+
+---
+class: left, top
+
+### Example: Guessing the Nth percentile
+Use bar height to guess bin such that N percent of data is below it. Hard to tell with some plots! Remember `\(1e6 = 10^6 = 1\)` million.
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/fakebook_likes_q50.jpeg)
+
 
 ---
 class: left, top
@@ -251,9 +261,20 @@ We'll talk about it in the data homework.
 class: left, top
 ## Averages are everywhere. What do they tell us, and not?
 
+.pull-left[
+### does not tell you
 
-XXXXX
+- how evenly values are spread
+- min/max
+- whether a few extremely big (positive or negative) values are influencing the calculation
+- **median** tells you about the middle but **is less sensitive to extreme values**
+]
+.pull-right[
+### but important because
 
+- a common way to capture the 'middle' value, along with median
+- magic of the bell curve: we'll see this later!
+]
 ---
 class: left, top
 
@@ -269,6 +290,30 @@ class: left, top
 .pull-right[
 ![](summarize_single_var_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 ]
+
+---
+class: inverse, center, middle
+
+# Group breakout exercise
+
+---
+class: left, top
+
+## Poll closes at ________!
+
+## Poll everywhere link: https://PollEv.com/surveys/wk1afrjltBXR1J1GQION3/respond
+
+## You must be registered to submit a response!
+
+## Discuss with group but respond individually
+
+---
+class: center, middle
+
+![](gudetama2.png)
+
+???
+image credit: deviantart.com/atsushika28
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
