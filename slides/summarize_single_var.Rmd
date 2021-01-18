@@ -46,12 +46,6 @@ class: inverse, center, middle
 
 ---
 class: left, top
-## Example data for today: Duke
-
-
-
----
-class: left, top
 
 ## Definition: sample distribution
 >> The sample distribution of a variable tells us what values it takes and how often it takes these values in our dataset.
@@ -98,7 +92,7 @@ class: left, top
 
 - area of a pie slice represents the relative frequency of a category
 - these can be **hard to read** because areas are difficult to estimate by eye
-- bar charts preferred usually
+- can be used **only for** counts adding to the total number of observations, or percentages adding to 100
 
 ---
 class: left, top
@@ -124,26 +118,68 @@ class: left, top
 ]
 
 ---
-background-image: url(https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/fakebook_select_cat.jpeg)
-background-position: 50% 50%
-class: left, top
+class: center, middle
 
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/fakebook_select_cat.jpeg)
 
 ---
 class: left, top
 
 ### There are too many weird small categories to show nicely, so I picked some I was interested in.
 
-### but does it look like if we isolate the most common posting categories?
+### but what does it look like if we isolate the most common posting categories?
 
 ---
-background-image: url(https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/fakebook_over500_cat.jpeg)
-background-position: 50% 50%
-class: left, top
+class: center, middle
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/fakebook_over500_cat.jpeg)
 
 ---
 class: left, top
-
-#### Another bar plot from the article
+#### Another bar plot, from the article
 
 ![](https://img.buzzfeed.com/buzzfeed-static/static/2018-12/28/14/asset/buzzfeed-prod-web-02/sub-buzz-719-1546024227-1.jpg?downsize=800:*&output-format=auto&output-quality=auto)
+
+
+---
+class: left, top
+
+## Sample distribution
+
+
+.pull-left[
+### categorical variables
+
+- given by **relative frequencies** of each category
+- think of it as the chance a randomly chosen observation falls in that category
+- e.g. relative frequency of 0.1 for category 'A' means 10 percent of observations of type 'A' 
+]
+.pull-right[
+### quantitative variables
+
+- more complicated
+- will evaluate by looking at **histograms**
+]
+
+---
+class: left, top
+
+## Histogram
+
+.pull-left[
+- breaks the range of the values of a quantitative variable into intervals (bins) of a given width
+- displays only the frequencies or relative frequencies of the observations that fall into each interval
+]
+.pull-right[
+- choose any convenient number of intervals of equal width
+- but **choice of width might affect how you interpret the data**
+]
+
+### Example: 
+
+---
+
+
+???
+fakebook_likes_smallbin.jpeg
+fakebook_likes_bigbin.jpeg
