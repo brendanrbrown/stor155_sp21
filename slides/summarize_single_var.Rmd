@@ -57,6 +57,29 @@ class: left, top
 
 ---
 class: left, top
+
+### frequency statistics
+
+- **frequency** of a category is the **number of observations** in that category
+- **relative frequency** is number of **observations in a category / total** number of observations 
+
+.pull-left[
+### distributions: categorical 
+
+- given by **relative frequencies** of each category
+- think of it as the chance a randomly chosen observation falls in that category
+- e.g. relative frequency of 0.1 for category 'A' means 10 percent of observations of type 'A' 
+]
+.pull-right[
+### distributions: quantitative
+
+- given by **relative frequencies in a range** of possible values
+- think of as the chance a randomly chosen observation falls in the range
+- will evaluate with  **histogram** plots
+]
+
+---
+class: left, top
 ## Looking at sample distributions: depends on the variable type
 
 .pull-left[
@@ -74,14 +97,10 @@ class: left, top
 #### histograms
 ]
 
+
 ---
 class: left, top
 ## Looking at categorical data
-
-### frequency statistics
-
-- **frequency** of a category is the **number of observations** in that category
-- **relative frequency** is number of **observations in a category / total** number of observations 
 
 ### bar graph
 
@@ -136,50 +155,140 @@ class: center, middle
 
 ---
 class: left, top
-#### Another bar plot, from the article
 
-![](https://img.buzzfeed.com/buzzfeed-static/static/2018-12/28/14/asset/buzzfeed-prod-web-02/sub-buzz-719-1546024227-1.jpg?downsize=800:*&output-format=auto&output-quality=auto)
+### Does this information make sense?
 
-
----
-class: left, top
-
-## Sample distribution
-
-
-.pull-left[
-### categorical variables
-
-- given by **relative frequencies** of each category
-- think of it as the chance a randomly chosen observation falls in that category
-- e.g. relative frequency of 0.1 for category 'A' means 10 percent of observations of type 'A' 
-]
-.pull-right[
-### quantitative variables
-
-- more complicated
-- will evaluate by looking at **histograms**
-]
+### Will investigate a little in the group exercise.
 
 ---
 class: left, top
 
-## Histogram
+## Histogram: looking at quantitative variable distributions
+
 
 .pull-left[
-- breaks the range of the values of a quantitative variable into intervals (bins) of a given width
-- displays only the frequencies or relative frequencies of the observations that fall into each interval
+- **breaks the range of the values into bins** (intervals) of a given width
+- displays frequencies or relative frequencies of the observations that fall into each interval
 ]
 .pull-right[
 - choose any convenient number of intervals of equal width
-- but **choice of width might affect how you interpret the data**
+- but choice of width might affect how you interpret the data
 ]
 
-### Example: 
+### Example: `fb_engagement` variable histogram with differing bin sizes
 
 ---
+class: center, middle
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/fakebook_likes_smallbin.jpeg)
+
+---
+class: center, middle
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/fakebook_likes_bigbin.jpeg)
+
+---
+class: left, top
+
+### A good histogram allows you to guess at key properties of a numeric variable:
+
+1. What are the maximum and minimum values?
+2. What is the 'middle' value? 
+3. What is the average value?
+4. Are the values concentrated around the average or spread out?
+5.  What is (are) the most common value(s)?
 
 
-???
-fakebook_likes_smallbin.jpeg
-fakebook_likes_bigbin.jpeg
+### These are all important *statistics* of a numeric variable.
+
+### Let's make these ideas more precise
+
+---
+class: inverse, center, middle
+
+# Sample statistics for numeric variables
+
+
+---
+class: left, top
+
+.pull-left[
+### Range: 
+
+- max value minus min
+
+### Nth quantile: 
+
+- value defining a cutoff so that N percent (appropximately) of your data is below that value 
+
+### Median: 
+
+- 50th quantile, half of the data is below this value, half above
+]
+.pull-right[
+
+
+### Mean: 
+
+- average
+
+### Variance: 
+
+- average squared distance of values from the mean. A way to think about how *spread out* the data are
+]
+
+---
+class: left, top
+
+### Example: Guessing the median
+
+
+---
+class: left, top
+## Math definitions
+If I have some number $n$ data points, I will represent my numeric variable values by $$X_1, X_2 ... X_n  $$
+
+.pull-left[
+### mean
+
+$$\bar{X} = \frac{1}{n}\sum_{i = 1}^n X_i = X_1 + X_2 + \ldots X_n $$
+]
+.pull-right[
+### variance
+$$\frac{1}{n}\sum_{i = 1}^n \left(X_i - \bar{X}\right)^2$$
+]
+
+### Warning!
+For reasons not important to this class, sometimes statistical software will calculate variance with $\frac{1}{n-1}$ in front instead of $\frac{1}{n}$. 
+
+We'll talk about it in the data homework.
+
+---
+class: left, top
+## Averages are everywhere. What do they tell us, and not?
+
+
+XXXXX
+
+---
+class: left, top
+
+## These two variables have approximately the same average, $\bar{X} = 0$
+
+```{r}
+library(ggplot2)
+d <- data.frame(b = ifelse(runif(5000) < .5, -1, 1), x = rnorm(5000))
+```
+
+
+.pull-left[
+```{r}
+ggplot(d, aes(x = b)) + geom_histogram(fill = '#dc322f') + theme_minimal()
+```
+
+]
+.pull-right[
+```{r}
+ggplot(d, aes(x = x)) + geom_histogram(fill = '#dc322f') + theme_minimal()
+```
+]
