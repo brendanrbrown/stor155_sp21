@@ -94,6 +94,11 @@ Grades will appear on Sakai.
 7. enter my UNC email address (see the syllabus on Sakai) and click 'send'
 
 
+## Working with others, using resources
+
+Please do read the data homework section of the syllabus for these details. Your best option, in general, will be to simply attend the data lab sessions where we will cover much of what you need to do.
+
+If you cannot attend those sessions, for example because you are in a different time zone, please email me. If there is enough demand I will set up an additional session at a more convenient time. Otherwise, I will work with those students on a case-by-case basis.
 
 ## Go to Sakai instead for
 
