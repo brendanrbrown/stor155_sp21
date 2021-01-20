@@ -88,8 +88,9 @@ Grades will appear on Sakai.
 1. open your Jupyter notebook
 2. select the Kernel menu item up top, and select 'Restart kernel and run all cells'. This restarts your session and runs all code cells from top to bottom, a great way to check for silly errors (I make them all the time).
 3. Check for errors: If you did something like refer to an object name before creating it, you might get an error. This is a good chance to fix them.
+4. **Export to html**: Under the file menu, click Export notebook as > Export notebook to html
 4. Log onto Office 365 (see 'Getting started' excel instructions up top) and navigate to one drive
-5. Upload your file to one drive
+5. Upload your html file to one drive
 6. Click the share button
 7. enter my UNC email address (see the syllabus on Sakai) and click 'send'
 
