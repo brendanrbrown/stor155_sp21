@@ -1,8 +1,10 @@
+AD-HOC LIST OF SITES WITH INTERESTING DATA
+
 World Bank
 https://data.worldbank.org/
 
 Federal Reserve
-
+https://fred.stlouisfed.org/
 
 NOAA
 https://www.ncdc.noaa.gov/cdo-web/datatools
@@ -10,6 +12,8 @@ https://www.ncdc.noaa.gov/cdo-web/datatools
 EPA
 https://www.epa.gov/outdoor-air-quality-data
 
+National center for biotech information (genome data)
+https://www.ncbi.nlm.nih.gov/datasets/
 
 Buzzfeed
 https://github.com/BuzzFeedNews/2018-12-fake-news-top-50
