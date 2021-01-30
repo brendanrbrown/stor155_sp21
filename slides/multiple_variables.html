@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Section 3: Relations between multiple variables</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Section 3: Relations between multiple variables
+## <br/>STOR 155.02, Spring ’21
+### updated 2021-01-30
+
+---
+
+class: left, middle
+
+
+
+## What you will learn
+
+- time series (slides are your best reference!)
+- scatterplots
+- correlation, covariance
+
+## Resources
+
+- Textbook ch 1.6 (scatterplots), ch 2.1.4 (correlation, linear relationships)
+
+- Warning: Textbook does not have a dedicated section on time series, though they do appear. These notes are your main resource.
+
+---
+class: inverse, center, middle
+
+# Time series
+
+---
+class: left, top
+
+## A **time series is a numeric variable**
+
+## with a special relationship to another variable, 
+
+## TIME
+
+## measured in some units, 
+
+## e.g. seconds, months, whatever
+
+---
+class: left, top
+
+# Show up *everywhere*
+
+### [gross domestic product](https://fred.stlouisfed.org/series/GDP/), [arctic sea ice extent](https://www.climate.gov/news-features/understanding-climate/climate-change-minimum-arctic-sea-ice-extent), your college grades, [K-pop group sizes](https://pudding.cool/2020/10/kpop/), crude birth rate, average daily temperature, [employment rate](https://fred.stlouisfed.org/series/LREM25TTUSM156S), [covid cases/deaths](https://github.com/nytimes/covid-19-data), [police shootings](https://github.com/washingtonpost/data-police-shootings), [concentration of a contaminant in river water](https://www.waterqualitydata.us/), [song popularity](https://archive.ics.uci.edu/ml/datasets/FMA%3A+A+Dataset+For+Music+Analysis), movie studio revenues, [presidential approval ratings](https://fivethirtyeight.com/features/since-the-capitol-attack-trumps-approval-rating-has-plummeted-at-a-record-rate/) and [so so much baseball data](https://github.com/chadwickbureau/baseballdatabank/tree/master/core)
+---
+class: left, top
+
+## Today's example: Female life expectancy at birth, [World Bank data](https://data.worldbank.org/indicator/SP.DYN.LE00.IN)
+
+annual, from 1960-2018, also on the course github page.
+
+
+| year| Azerbaijan|  China| Ireland|   Mali| Thailand| United.States| Zimbabwe|
+|----:|----------:|------:|-------:|------:|--------:|-------------:|--------:|
+| 1960|     64.168| 45.191|  71.707| 29.026|   57.059|          73.1|   54.672|
+| 1961|     64.403| 45.497|  71.941| 29.210|   57.617|          73.6|   55.141|
+| 1962|     64.629| 46.243|  72.147| 29.432|   58.151|          73.5|   55.609|
+| 1963|     64.852| 47.486|  72.334| 29.704|   58.653|          73.4|   56.071|
+| 1964|     65.074| 49.194|  72.510| 30.033|   59.120|          73.7|   56.521|
+| 1965|     65.299| 51.258|  72.680| 30.429|   59.560|          73.8|   56.952|
+
+---
+class: left, top
+
+## Things to know about time series
+
+.pull-left[
+
+### values **appear in order**
+
+### so you can't re-arrange the rows!
+
+### **meaningless without time** variable
+
+### **histograms are not as useful here**
+]
+.pull-right[
+### **trend** is a persistent relationship of variable with time
+
+### **increasing:** variable *tends to* increase as time increases
+
+### **decreasing:** variable *tends to* decrease as time increases
+]
+
+---
+class: left, top
+#### **This is a time series plot.** We'll discuss in the group exercise.
+
+#### plots created in [notebook on github site](github.com/brendanrbrown/notebooks/wb_health.ipynb)
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/wb_lifexpec.jpeg)
+
+---
+class: left, top
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/wb_lifexpec_histzimb.jpeg)
+
+---
+class: left, top
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/wb_lifexpec_histogram.jpeg)
+
+---
+class: left, top
+
+## Other ways to view and evaluate time series variables
+
+### **Changes per period**, from one time unit to the next, e.g.
+
+`$$\text{life expectancy 1961} - \text{life expectancy 1960}$$`
+
+### **Average change:**, i.e. the mean of the changes per perid
+
+`$$\text{average change} &gt; 0 \quad \text{can say } \quad \text{'increasing on average', 'increasing trend'}$$`
+
+`$$\text{average change} &lt; 0 \quad \text{can say } \quad \text{'decr. on average', 'decr. trend'}$$`
+
+---
+class: left, top
+
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/wb_lifexpec_chg.jpeg)
+
+---
+class: left, top
+
+## How to read a time series plots
+
+.pull-left[
+### Trends:
+
+- original time series: look at the **slope** (rise/run)
+- positive slope means increasing trend
+- ask how well it sticks to a straight line
+- **trends over short periods?**
+
+### Min, max are easy, quantiles are hard to see
+]
+.pull-left[
+### **Guess the mean** by imagining a *horizontal* line through the middle of the data
+
+### **Mean of changes per period** same as slope of original! 
+`$$\frac{\text{final value} - \text{first value}}{\text{number periods}}$$`
+]
+
+---
+class: left, top
+
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/wb_lifexpec_chgmali.jpeg)
+
+---
+class: inverse, center, middle
+
+# Scatterplots and correlation
+
+---
+class: left, top
+
+## How to evaluate the relationship between any two numeric variables?
+
+### Scatterplot
+
+- one variable on the x axis, one on the y axis
+- points are pairs of `\((x, y)\)` values
+- describes **how y changes when x changes** and vice versa
+
+### Correlation and covariance
+
+- **two-sample statistics** describing **linear relationships**
+- meaning, how well does a line through your scatterplot capture its shape?
+- more on that later
+
+---
+class: center, top
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/wb_lifexpec_scatter_one.jpeg)
+
+
+---
+class: center, top
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/wb_lifexpec_scatter_one.jpeg)
+
+
+---
+class: left, top
+
+## What am I seeing?
+
+### **x-axis:** US life expectancy variable values
+
+### **y-axis** Chinese life expectancy variable values for the **same row**, meaning same year
+
+.pull-left[
+
+| United.States|  China|
+|-------------:|------:|
+|          73.1| 45.191|
+|          73.6| 45.497|
+|          73.5| 46.243|
+]
+
+
+
+---
+class: left, top
+
+## How to interpret scatter plots
+
+.pull-left[
+### Do
+
+- "Variable y is (**increasing / decreasing / constant**) in variable x"
+- Or, "variable y and x have a (**positive / negative**) relationship"
+- "Variables y and x have a (**linear / non-linear**) relationship"
+]
+
+.pull-right[
+### Don't
+
+- "Variable x **causes** variable y to (increase / decrease)"
+
+]
+
+---
+class: left, top
+
+## Strength and type of the relationship
+
+### **Linear relationships:** 
+#### those for which you can put a straight line through the data and
+approximately capture its shape.
+
+### **How straight is straight enough to be 'linear'?**
+
+#### Conclusions based on scatterplots often are open to interpretation!
+
+#### Make this a quantitative evaluation with **correlation** statistic.
+
+---
+class: center, top
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/wb_lifexpec_scatter_one.jpeg)
+
+---
+class: left, top
+
+### Things you could say
+
+- US and Chinese female life expectancy have a **positive** relationship
+
+- Chinese female life expectancy is **increasing** in US female life expectancy
+
+- US, Chinese female life expectancy have an **somewhat linear** relationship
+
+
+---
+class: left, top
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/wb_lifexpec_scatter.jpeg)
+
+---
+class: left, top
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/wb_lifexpec_scatter_align.jpeg)
+
+---
+class: left, top
+
+## Definitions of some two-sample statistics:
+
+`$$X_1, X_2 \ldots X_n , \quad \quad Y_1, Y_2 \ldots Y_n$$`
+
+e.g. `\(X_1, Y_1 =\)` US and Chinese life expectancies in 1960, respectively. 
+
+Remember the notation: `\(\bar{X}\)` is the mean and `\(Var(X)\)` is the variance, a measure of how 'spread out' a variable is from its mean.
+
+.pull-left[
+#### **Standard deviation** (one-sample)
+The square root of the variance, `$$\sqrt{Var(X)} = sd(X)$$`
+
+
+]
+
+.pull-right[
+
+#### **Sample covariance**
+
+`$$Cov(X, Y) = \frac{\sum_{i = 1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{n}$$`
+
+
+]
+
+.center[
+#### **Sample correlation**
+
+`$$r = \frac{Cov(X, Y)}{sd(X)sd(Y)}$$`
+]
+
+---
+class: left, top
+
+
+
+---
+class: center, middle
+
+link to scatterplot in final poll question [wb_lifexpec_scatter_all](https://github.com/brendanrbrown/stor155_sp21/blob/main/notebooks/images/wb_lifexpec_scatter_all.jpeg)
+
+---
+class: center, middle
+
+![](gudetama2.png)
+
+???
+image credit: deviantart.com/atsushika28
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "solarized-light",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
