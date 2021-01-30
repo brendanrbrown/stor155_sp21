@@ -315,7 +315,7 @@ $$r = \frac{Cov(X, Y)}{sd(X)sd(Y)}$$
 ---
 class: left, top
 
-
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/mvn_corrplot.jpeg)
 
 ---
 class: center, middle
