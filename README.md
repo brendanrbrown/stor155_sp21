@@ -1,6 +1,30 @@
 # Stor155: section 2, spring 2021
 This repository primarily serves as an easy way for me to share data with students in the course, and also holds some resources for completing data homework.
 
+## Help! Tips for data homework
+
+### Expectations
+
+- demos are to **give you a little head start** on the homework by demonstrating some relevant tools
+- but you **should not expect to end the session with homework done** --- far from it
+- expect to spend a substantial amount of time, if needed, learning how to do things
+- by cutting back on other assignments, **I am giving you the time needed to do this**
+
+The best way to follow along is to use exactly the tool I am using in the demos: Excel online or jupyter lab.
+
+I can't spend class time debugging each person's slightly different Excel version. If you choose to use something different, that's up to you. What I demo should still give you a head start.
+
+### If you're stuck
+
+- **come to office hours**, which is why they exist
+- **excel users** can come to either mine or the TA's office hours
+- **python users** come to mine
+- **email me** or the TA, but please see the email policy in the syllabus
+
+### If you are in a different time zone / have poor connectivity
+
+This definitely will make it more difficult for you to attend the Thursday demos. Email me and we'll work it out.
+
 ## Getting started
 
 #### using excel (default):
