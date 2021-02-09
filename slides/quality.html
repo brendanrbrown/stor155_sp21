@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Section 4: Evaluating the quality of data and their statistics</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Section 4: Evaluating the quality of data and their statistics
+## <br/>STOR 155.02, Spring ’21
+### updated 2021-02-08
+
+---
+
+class: left, middle
+
+
+
+## What you will learn
+
+- data collection
+- experimental vs. observational data
+- correlation, causality and 'confounding/lurking' variables
+- working with surveys
+- summarizing subcategories
+
+## Resources
+
+- Textbook ch 1.3-1.5, 1.10 again for categorical variable concepts
+
+---
+class: inverse, center, middle
+
+# Heads up
+
+---
+class: left, top
+
+## This is kind of a long lecture
+
+## with a bit more to cover than usual so far
+
+## I will go faster
+
+## but stop me for questions
+
+## and be prepared to look back at the slides and video
+
+---
+class: center, middle
+
+![](https://media.giphy.com/media/3ohjUMjTgvLWcNf0g8/giphy.gif)
+
+### you can do it
+
+---
+class: inverse, center, middle
+
+# Data collection, and quality of statistical statements
+
+---
+class: left, top
+## Review: Big picture
+
+### Our perspective: using data to learn about some aspect of the world
+
+### Often trying to answer a specific question
+
+### Examples from class so far:
+
+.pull-left[
+#### distribution of likes for fake news facebook posts?
+
+#### highly liked fake news posts common or rare?
+
+]
+.pull-right[
+#### land-grant universities still profiting from Morrill Act?
+
+#### trends in female life expectancy? 
+]
+
+---
+class: left, top
+## Review: Some terms
+
+### *population*: group of people/places/things you hope to learn about
+
+#### national economies, elderly U.S. residents, north atlantic right whales, cat pictures online ...
+
+### *sample*: subset for which you have data. 
+
+#### sometimes sample = population!
+
+### *observation*: unit of a single element in sample data
+
+---
+class: left, top
+
+### These distinctions aren't always as clear and neat as the textbook would like you to think.
+
+### Examples from class so far:
+
+.pull-left[
+#### **Question:** distribution of likes for fake news facebook posts?
+
+#### **Population:** fake news posts on facebook
+
+#### **Sample:** dataset of posts Buzzfeed identified as fake news in 2018
+
+]
+.pull-right[
+#### **Question:** trends in women's health / wellbeing in selected countries?
+
+#### **Population:** selected countries
+
+#### **Sample:** female life expectancy at birth from 1960-2018 in those countries
+
+]
+
+---
+class: left, top
+
+## Goal is to evaluate:
+
+### a. **How well do the sample observations represent the population?**
+
+### b. **Does the sample data support my conclusions, or is there something else to explain what I see?**
+
+### c. **Are there problems with my data, such as missing values, that prevent me from adequately answering the question?**
+
+---
+class: left, top
+
+## Focus on three types of problems:
+
+### 1. **bad sample**
+
+### 2. **missing or problematic values**
+
+### 3. **confouding/lurking variables**
+
+---
+class: left, top
+
+## Example: The story of a statistic
+
+&gt;&gt; We hear Democrats talking about the middle class and workers ... [but] if only 39 percent of this country can afford a thousand-dollar emergency, we must use the word poverty.
+
+&gt;&gt; ------ Rev. William Barber II [on NPR, Jan. 31 2021](https://www.npr.org/2021/01/31/962638253/civil-rights-activist-weighs-in-on-bidens-early-days-in-office)
+
+
+### Is this true?
+
+### or at least as close to truth you can get in a soundbite?
+
+### What is it based on?
+
+---
+class: left, top
+
+## First step: What's the reference?
+
+### closest I found to what Barber could be talking about was 
+
+&gt;&gt; A similar statistic came out of the 2018 Federal Reserve Report on the Economic Well-Being of U.S. Households, finding that **40% of adults in this country could not afford a $400 emergency**
+
+&gt;&gt; ----- [Numbers behind the Moral Budget](https://www.breachrepairers.org/blogs/explaining-the-140-million), Repairers of the Breach blog post (a Barber-affiliated advocacy group)
+
+### citation:  
+
+#### 2018 Federal Reserve Report on the [Economic Well-Being of U.S. Households](https://www.federalreserve.gov/publications/report-economic-well-being-us-households.htm)
+
+---
+class: left, top
+
+## Step two: Get the data the stat is based on
+
+.pull-left[
+### About the data
+
+#### report based on the Fed's [Survey of Household Economics and Decisionmaking (SHED)](https://www.federalreserve.gov/consumerscommunities/shed.htm)
+
+#### it's a [long questionnaire](https://www.federalreserve.gov/publications/2020-supplemental-appendixes-report-economic-well-being-us-households-2019-overview.htm) asking about households' feelings about the economy, work, financial stability
+]
+.pull-right[
+### What I got
+
+#### 2019 vintage of the survey
+
+#### the most recent year with complete results
+]
+
+---
+class: left, top
+
+## What is the population? (you answer this)
+
+
+## What is the sample?
+
+#### Good surveys will have a **detailed description of how the sample of respondents (whose responses make up the dataset) was collected**
+
+#### In this case, the sample of about **12,000 respondents** is 'designed to be **representative** of adults age 18 and older living in the United States.'
+
+#### to understand the details, we need to defer to the next section when we discuss randomness.
+
+#### The Fed gives [details here.](https://www.federalreserve.gov/publications/2020-economic-well-being-of-us-households-in-2019-description-of-the-survey.htm)
+
+---
+class: center, middle
+
+## How you get your sample matters
+
+### **\[one obs. ... ...  ... ... ... ... ... ... ... ... whole pop.\]**
+
+.pull-left[
+### WORST
+]
+
+.pull-right[
+### BEST
+]
+
+### **this isn't very helpful though**
+
+---
+class: left, top
+
+## Rules of thumb for sample data
+
+.pull-left[
+## **GOOD**
+
+#### controlled experiment --- e.g. data from measurements in a lab
+
+#### 'random' --- e.g. observations determined by rolling a (many-sided) die
+
+#### details on what randomness means next section
+
+]
+
+.pull-right[
+## **BAD**
+
+#### 'anecdotal' sample
+
+#### e.g. ask my friends about fake news they've seen on facebook
+
+#### 'biased' sample where observations are chosen (or self-select) because of certain characteristics
+
+#### e.g. *all online review systems* such as yelp, RMP, Amazon reviews...
+
+#### good if the reviewer shares your values, bad for calculating statistics like averages
+
+]
+
+
+
+
+---
+class: left, top
+
+## SHED survey: What are the variables?
+
+
+### Full list in the [codebook](https://www.federalreserve.gov/consumerscommunities/files/SHED-2019-codebook.pdf)
+
+### Class dataset picks out only a few. See the related [notebook on github](https://github.com/brendanrbrown/stor155_sp21/blob/main/notebooks/shed_survey.ipynb)
+
+### Today, interested in responses to 
+
+&gt;&gt; Suppose that you have an emergency expenses that costs $400. Based on your current financial situation, how would you pay for this expense?
+
+### 'afford' to pay it if using cash or card paid off next month
+
+---
+class: center, top
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/shed_emergency_full_normalized.jpeg)
+
+---
+class: left, top
+
+### From the plot, it looks like almot 90 percent *can* afford to pay
+
+### **but**
+
+### Data quality wrinkle: Some people give multiple answers for how they would pay.
+
+### What should we do?
+
+
+---
+class: center, top
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/shed_afford.jpeg)
+
+---
+class: left, top
+
+## Takeaways
+
+### about **30 percent** could not 'afford' a $400 emergency in 2019
+
+### **but** when the Fed included data from April 2020, the number [rose to 37 percent](https://www.federalreserve.gov/publications/2020-economic-well-being-of-us-households-in-2019-dealing-with-unexpected-expenses.htm)
+
+### in my *opinion*, **data do support** Barber's basic point
+
+### that about a third of Americans would need to go into debt for even a small financial emergency
+
+#### and this is consistent with the Fed's own interpretation of this data
+
+---
+class: center, top
+
+### Why not just remove observations that list more than one way to pay?
+
+### this sub-sample of respondents **differs from the original sample** in a meaningful way 
+
+#### people rating themselves as worse off make up larger proportions of people paying multiple ways
+
+---
+class: left, top
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/shed_security_by_nanswer.jpeg)
+
+---
+class: left, top
+
+## These ideas are most relevant for 
+
+#### **surveys** (e.g. Census), 
+
+#### **scientific observation** (sample collected in the field) 
+
+#### and **medical studies**
+
+## Doesn't make too much sense for talking about the life expectancy data, for example
+
+## But **it always is relevant to think about how your data were generated!**
+
+---
+class: inverse, center, middle
+
+# Confounding variables
+
+---
+class: left, top
+
+### Remember the plot of US and Chinese female life expectancy from last time / homework
+
+### r = Corr(US, China) was almost perfect!
+
+### but the **correlation in year over year changes** in the US and China had correlation near zero!
+
+---
+class: center, top
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/wb_lifexpec_scatter_one.jpeg)
+
+---
+class: center, top
+
+![](https://raw.githubusercontent.com/brendanrbrown/stor155_sp21/main/notebooks/images/wb_lifexpec_changeUSChina.jpeg)
+
+---
+class: center, top
+
+### This happens because **both US and China life expectancies are highly positively correlated with time!**
+
+
+.pull-left[
+### **Confounding variable**
+
+#### Z is counfounding for evaluating the relationship between X and Y
+
+#### if Z is strongly correlated with both X and Y
+
+#### so that correlation between X and Y
+
+#### is really just because of their correlation with Z
+]
+.pull-right[
+### e.g. **time is confounding**
+
+### for China and US life expectancies
+
+### in this case can see this by removing the effect of time with year-to-year changes
+]
+
+---
+class: center, top
+
+## This is why when evaluating relationships between variables with correlation
+
+## it's important to talk about positive/negative **relationships**
+
+## and not about one variable *causing* another to increase/decrease
+
+---
+class: center, middle
+
+## PollEv.com/brendanbrown849
+
+## poll closes at `_________`
+
+## don't be late!
+
+---
+class: center, middle
+
+![](gudetama2.png)
+
+???
+image credit: deviantart.com/atsushika28
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "solarized-light",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
