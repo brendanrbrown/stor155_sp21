@@ -19,3 +19,4 @@ https://www.ncbi.nlm.nih.gov/datasets/
 Buzzfeed
 https://github.com/BuzzFeedNews/2018-12-fake-news-top-50
 fakebook_buzzfeed_2018.csv
+NCSU API list https://www.lib.ncsu.edu/text-and-data-mining/scholarly-apis-datasets
