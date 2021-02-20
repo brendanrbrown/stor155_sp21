@@ -1,0 +1,327 @@
+---
+title: "Section 5: What is probability?"
+subtitle: "<br/>STOR 155.02, Spring '21"
+date: "updated `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    yolo:
+      img: gudetama.png
+      times: 1
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: solarized-light
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: left, middle
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#https://pkg.garrickadenbuie.com/xaringanthemer/articles/themes.html
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
+library(xaringanthemer)
+library(showtext)
+
+style_solarized_light()
+# style_mono_accent(
+#   base_color = "#1c5253",
+#   header_font_google = google_font("Josefin Sans"),
+#   text_font_google   = google_font("Montserrat", "300", "300i"),
+#   code_font_google   = google_font("Fira Mono")
+# )
+```
+
+## What you will learn
+
+- XXX
+
+## Resources
+
+- Textbook: ch 3.1
+
+---
+class: inverse, center, middle
+
+# Recap and motivation
+
+---
+class: left, top
+
+## We've learned ways to investigate **sample datasets.**
+
+## **sample data** comes from a larger population, roughly speaking
+
+## **it matters** how the sample is collected!
+
+## and to understand this we need a little bit of probability
+
+---
+class: left, top
+
+## Uses of probability and sampling extend far beyond than sample data collection
+
+## with these tools, you will have a better understanding of how to answer questions like
+
+.pull-left[
+- how do I understand **margins of error** in economic forecasts?
+
+- if that basketball player is on a **hot streak**, what's the chance she makes her next two shots?
+
+- how long would it take someone randomly entering characters to guess my password?
+
+]
+.pull-right[
+- if I **test positive** for covid/HIV/breast cancer/... **what's the chance I actually have it?**
+
+- if I test negative, what's the chance I don't?
+
+- what's up with the **bell curve**, and why is it everywhere?
+]
+
+---
+class: inverse, center, top
+background-image: url("https://github.com/brendanrbrown/stor155_sp21/raw/main/slides/gudetama3.png")
+background-position: center
+background-size: contain
+
+# Warning!
+
+---
+class: left, top
+
+# This will be the toughest section of the class for most of you. 
+
+# **You have to work hard if you want to do well.**
+
+# I am here to help you --- but you must be willing to put in the work.
+
+
+image credit: deviantart.com/monchoncho
+
+---
+class: inverse, center, middle
+
+# Randomness
+
+
+---
+class: left, top
+
+## Everything in the world is the result of some **process**
+.pull-left[
+
+- metabolism converts food to energy in living organisms
+
+- weather today driven by atmospheric forces
+
+- my salary, determined by my employment contract
+
+]
+.pull-right[
+- size of your heart at age 51, in ounces
+
+- whether or not you win the lottery *this* time
+
+- amount of caffeine in a cup of coffee, in grams, as measured in an experiment
+]
+
+---
+class: left, top
+
+# Definition
+
+>> ## An outcome subject to randomness is one such that the **same process doesn't always lead to the same outcome.**
+
+Otherwise a process is called deterministic.
+
+---
+class: left, top
+
+## It's a philosophical question as to whether *anything* is truly random.
+
+## In this course, we will focus on things that can be  **best understood as random**
+
+## to which the **tools of probability can be applied**
+
+
+---
+class: left, top
+
+## will build understanding by looking at **examples** as in data labs
+
+## e.g., which of these pictures was generated at random?
+
+![](http://www.empiricalzeal.com/wp-content/uploads/2012/12/pinker-glow-worms-and-stars-plot.jpg)
+
+source: [empiricalzeal](http://www.empiricalzeal.com/2012/12/21/what-does-randomness-look-like/)
+
+---
+class: left, top
+
+## Other example: Throughout the probability section, 
+
+## each lecture, our friend **gudetama will slide off his toast at a randomly chosen slide**
+
+---
+class: left, top
+
+## Definition
+
+### a **random variable** is the outcome of a random process
+
+.pull-left[
+### **discrete** random variable
+
+#### takes **integer** values
+
+#### or **categorical**, like the categorical data seen previously
+
+]
+
+.pull-right[
+### **continuous** random variable
+
+#### takes numeric values
+
+#### in a range of possible values, finite or infinite
+]
+
+### to **sample** a random variable means to **observe** one or more outcomes from this same random process
+
+---
+class: inverse, center, middle
+
+# Probability
+
+---
+class: left, top
+
+### Probabilities associated with processes and their outcomes are
+
+#### **Statistical** point of view
+
+>> 'The probability of an outcome is the proportion of times the outcome would occur if we observed the random process an infinite number of times.'
+
+>> textbook ch 3.1.1
+
+#### **Mathematical** point of view
+
+- numbers **between 0 and 1**
+- one **for each possible outcome** (maybe an infinite number)
+- representing the **weights used to calculate theoretical, weighted average** outcome
+- and weights of all possible outcomes **must add to one**
+- meaning *something* will happen for sure, though we don't yet know what.
+
+
+---
+class: left, top
+
+## Weighted averages and expectations
+
+>> the **expectation** of a random variable (r.v.) $X$ is a **weighted average of all possible outcomes**, with weights given by the probabilities
+
+$$P(X = x) \quad \text{is} \quad \text{the probability r.v. X takes outcome } x$$
+
+#### For a **discrete** r.v. $X$ with $n$ possible outcomes $x_1 ... x_n$, the **expectation of $X$** is defined mathematically as
+
+$$E(X) = \sum_1^n x_i \, P(X = x_i) \,   = x_1\,P(X = x_1) + ... x_n\,P(X = x_n) $$
+---
+class: left, top
+
+## Example
+
+In this example, the r.v. will represent the outcome from a coin toss. Each of the two outcomes is **equally likely.**
+
+
+$$X = 1 \quad \text{if coin comes up heads},  \quad \quad X = 0 \quad \text{if tails}$$
+
+
+
+### Using the rules of probability and expectation, tell me
+
+#### $P(X = 1) =$ ?
+
+#### $E(X) =$ ?
+
+---
+class: left, top
+
+## Rules of expectation
+
+for any two random variables $X, Y$
+
+.pull-left[
+#### $E(X + Y) = E(X) + E(Y)$
+
+#### $E(aX) = aE(X)$ for any number $a$
+]
+.pull-right[
+
+#### $E(X) \ge \text{minimum}(x_1, x_2, ... x_n)$
+
+#### $E(X) \le \text{maximum}(x_1, x_2, ... x_n)$
+
+]
+
+### example:
+
+I flip a coin. If heads, I pay you 5 dollars. Otherwise you get nothing. $X$ is the amount you win from this game.
+
+#### possible outcomes?
+
+#### $P(X = 0) =$ ?
+
+#### $E(X) =$ ?
+
+
+
+---
+class: left, top
+
+### Basic application of probability rules (and your intuition) tell you the answer
+
+### but you could have investigated this with a simulation!
+
+---
+class: center, middle
+
+```{r, dpi = 250, fig.width=10, fig.height=8}
+library(ggplot2)
+n <- 100
+d <- data.frame(x = 10*sample(0:1, n, replace = T))
+
+ggplot(d, aes(x = x, y = ..prop..)) + geom_bar(fill = '#348899') + theme_minimal() +
+  ggtitle("Proportion of outcomes for 100 samples of X")
+```
+
+---
+class: left, top
+
+### General method for calculating probabilities when all outcomes are equally likely
+
+$$P(X = x_i) = \frac{\text{number of ways } x_i \text{ can happen}}{\text{number of outcomes}}$$
+
+### example: pick one random card from a [briscola deck](https://en.wikipedia.org/wiki/Briscola)
+
+there are **40 cards** and **four suits** with an equal number of cards: clubs, coins, cups and swords.
+
+$$X = 1 \quad \text{if card is cups},  \quad \quad X = 0 \quad \text{if not}$$
+
+#### answer in the polls!
+
+---
+class: center, middle
+
+## PollEv.com/brendanbrown849
+
+## poll closes at `_________`
+
+## don't be late!
+
+---
+class: center, middle
+
+![](gudetama2.png)
+
+???
+image credit: deviantart.com/atsushika28
