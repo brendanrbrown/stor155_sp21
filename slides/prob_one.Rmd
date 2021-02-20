@@ -12,6 +12,28 @@ output:
       highlightStyle: solarized-light
       highlightLines: true
       countIncrementalSlides: false
+
+---
+class: inverse, center, middle
+
+# Midterm project
+
+---
+class: left, top
+
+## Instructions posted at [course github page](github.com/brendanrbrown/stor155_sp21/project)
+
+## **READ THESE CAREFULLY**
+
+## Key difference from homework
+
+### Under no circumstances should you communicate with other students about your work for this project
+
+### *absolutely none*, and this work is covered by honor code policies as if it were a test
+
+#### but you are free to use various online resource pages that we've been using for homework
+
+
 ---
 class: left, middle
 
@@ -31,9 +53,13 @@ style_solarized_light()
 # )
 ```
 
+
+
 ## What you will learn
 
-- XXX
+- definitions: random variable, probability, expectation
+- calculating expectation
+- first steps to calculating probabilities of discrete random variables
 
 ## Resources
 
