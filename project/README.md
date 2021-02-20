@@ -1,6 +1,6 @@
 # Midterm project instructions
 
-### due Tuesday, Feb. 23 at 12:30 pm
+### due Tuesday, March 2 at 12:30 pm
 
 ## Overview
 
