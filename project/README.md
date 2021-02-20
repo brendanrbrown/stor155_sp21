@@ -28,7 +28,7 @@ Running afoul of these policies will be considered a potential honor code violat
 
 1. On the sakai page, in resources, select the 'project_assignments.csv' file (open in excel or python). There, you will find a spreadsheet with your name onyen in one column and your project ID in another.
 
-2. Download the **two** project datasets associated with your ID on the course github page, at `github.com/brendanrbrown/stor155_sp21/project/data`
+2. Download the **two** project datasets associated with your ID on the course github page, at `github.com/brendanrbrown/stor155_sp21/project` in the CV and FRED folders
 
 For example, if my project ID is 21 then I would download the datasets called
 
