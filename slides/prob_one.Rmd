@@ -16,6 +16,22 @@ output:
 ---
 class: inverse, center, middle
 
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#https://pkg.garrickadenbuie.com/xaringanthemer/articles/themes.html
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
+library(xaringanthemer)
+library(showtext)
+
+style_solarized_light()
+# style_mono_accent(
+#   base_color = "#1c5253",
+#   header_font_google = google_font("Josefin Sans"),
+#   text_font_google   = google_font("Montserrat", "300", "300i"),
+#   code_font_google   = google_font("Fira Mono")
+# )
+```
+
 # Midterm project
 
 ---
@@ -33,26 +49,52 @@ class: left, top
 
 #### but you are free to use various online resource pages that we've been using for homework
 
+---
+class: left, top
+
+# To help you
+
+
+### Data lab this week instead will be an **extended office hours.**
+
+### **Keep the excel/python split** for the usual data lab time period to avoid chaos
+
+### A webassign homework but no additional data homework
+
+---
+class: left, top
+
+# Tips
+
+### up to homework 3 is now graded
+
+### first thing to do is review your homework **and the posted solutions**
+
+### **get started early**
+
+### remember: You won't get answers to last-minute questions
+
+---
+class: left, top
+
+## Specific tip on written answers
+
+### Many people lost points for nonsensical, circular logic in written responses. Writing more of a weak answer doesn't make it better.
+
+>> "it makes sense the correlation is close to 1 because the plot shows a strong correlation""
+
+### A better answer is (credit: Sejal Rai)
+
+>> "The correlation in Q5 makes sense because the r value of .96 is very close to 1, meaning that the correlation between China and the US is both strong and positive. This is shown visually in the Q2 graph, since the points make a positive and almost perfectly straight line ..."
+
+---
+class: inverse, center, middle
+
+# Back to class
+
 
 ---
 class: left, middle
-
-```{r xaringan-themer, include=FALSE, warning=FALSE}
-#https://pkg.garrickadenbuie.com/xaringanthemer/articles/themes.html
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = F, warning = F, message = F)
-library(xaringanthemer)
-library(showtext)
-
-style_solarized_light()
-# style_mono_accent(
-#   base_color = "#1c5253",
-#   header_font_google = google_font("Josefin Sans"),
-#   text_font_google   = google_font("Montserrat", "300", "300i"),
-#   code_font_google   = google_font("Fira Mono")
-# )
-```
-
 
 
 ## What you will learn
@@ -323,9 +365,9 @@ ggplot(d, aes(x = x, y = ..prop..)) + geom_bar(fill = '#348899') + theme_minimal
 ---
 class: left, top
 
-### General method for calculating probabilities when all outcomes are equally likely
+### General method for calculating probabilities when all choices are equally likely
 
-$$P(X = x_i) = \frac{\text{number of ways } x_i \text{ can happen}}{\text{number of outcomes}}$$
+$$P(X = x_i) = \frac{\text{number of ways outcome } x_i \text{ can happen}}{\text{number of choices}}$$
 
 ### example: pick one random card from a [briscola deck](https://en.wikipedia.org/wiki/Briscola)
 
@@ -333,7 +375,12 @@ there are **40 cards** and **four suits** with an equal number of cards: clubs, 
 
 $$X = 1 \quad \text{if card is cups},  \quad \quad X = 0 \quad \text{if not}$$
 
-#### answer in the polls!
+#### to answer, use the formula above, for which you should ask
+
+- how many cards are cups? this is the number of ways $X = 1$ outcome can happen
+- how many cards total?
+
+#### to the polls!
 
 ---
 class: center, middle
