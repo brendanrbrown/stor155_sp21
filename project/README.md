@@ -152,6 +152,9 @@ The cases and deaths data come from the `counties.csv` file at that site, and th
 - **calculate** the average value of `masks_group`
 - **briefly explain** what this average value represents
 
+#### IMPORTANT:
+If (and only if) *all* of your observations have a `masks_use` that is greater than 0.5, then use a 0.9 cutoff instead.
+
 ## Q6 (15 points)
 
 - **create a pivot table** (or a grouped data frame summary table for pandas users, as in homework) which groups observations by `masks_group` and calculates the following quantities for each subgroup
