@@ -40,7 +40,7 @@ style_solarized_light()
 - sets and set algebra
 - probability rules of sets
 - discrete distributions
-- variance and expecation of discrete distributions
+- variance and expectation of discrete distributions
 
 ## Resources
 
