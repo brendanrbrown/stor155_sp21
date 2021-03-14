@@ -1,0 +1,332 @@
+---
+title: "Section 8: Sums of independent r.v. and Binomial, Geometric distributions"
+subtitle: "<br/>STOR 155.02, Spring '21"
+date: "updated `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    yolo:
+      img: gudetama.png
+      times: 1
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: solarized-light
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+class: left, middle
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#https://pkg.garrickadenbuie.com/xaringanthemer/articles/themes.html
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
+library(xaringanthemer)
+library(showtext)
+
+style_solarized_light()
+# style_mono_accent(
+#   base_color = "#1c5253",
+#   header_font_google = google_font("Josefin Sans"),
+#   text_font_google   = google_font("Montserrat", "300", "300i"),
+#   code_font_google   = google_font("Fira Mono")
+# )
+```
+
+
+
+## What you will learn
+
+- Variance for sums of independent random variables
+- Binomial and geometric distribution basics
+
+## Resources
+
+- Textbook: ch 4.3-4.4
+
+---
+class: left, top
+
+## Rest of the semester
+
+### Discrete and continuous distributions
+Binomial, geometric, normal, uniform
+
+### Law of large numbers and central limit theorem
+
+### Models and estimation of parameters
+
+### Hypothesis testing
+
+### Final data project instead of exam
+
+---
+class: inverse, center, middle
+
+# Sums of independent random variables
+
+---
+class: left, top
+
+## Recap: X is Bernoulli(p)
+
+.pull-left[
+### Outcomes of X are?
+
+### Example?
+
+#### tell me what X is
+
+#### and what p is
+
+### Expectation
+$$E(X) = p$$
+]
+.pull-right[
+### Variance
+A useful formula.
+$$Var(X) = E\left[(X - E(X))^2\right]$$
+$$= E\left[X^2 - 2XE(X) + E(X)^2\right]$$
+$$= E\left[X^2\right] - 2E(X)E(X) + E(X)^2$$
+$$= E(X^2) - (E(X))^2$$
+
+**For Bernoulli X this is**
+$$= p(1-p)$$
+]
+
+---
+class: left, top
+
+### Example: Sum of N independent random variables
+
+Each week, Binky looks for ticks on her household pets: A cat, a dog and a hamster. If she finds at least one, her parents will pay her in ice cream.
+
+- ticks on dog is worth 1 pint
+- ticks on cat is worth 1/2 pint
+- ticks on hamster is worth 1/4 pint
+
+$$X_1 = 1\{\text{at least one tick on dog this week}\} \text{ is Bernoulli}(1/3)$$
+$$X_2 = 1\{\text{ticks on cat}\} \text{ is Bernoulli}(1/4)$$
+$$X_3 = 1\{\text{ticks on hamster}\} \text{ is Bernoulli}(1/6)$$
+
+### Call Y the random variable representing Binky's ice cream earned this week
+
+$$Y = \text{ ? (in terms of X_1, X_2, X_3)}$$
+$$E(Y) = \text{ ?}$$
+
+
+
+---
+class: left, top
+
+### What about the variance of Y?
+
+#### remember: this tells us how spread out random variable's values are on average, relative to the mean
+
+#### can be **hard to calculate for sums of random variables in general**
+
+### Rule: Constants multiply variance
+If $X$ is any random variable and $a$ is a constant
+
+$$Var(aX) = a^2 Var(X)$$
+
+### Rule: Variance for sum of **independent** r.v.
+
+If $Z_1 \ldots Z_N$ are independent
+
+$$Var\left(\sum_{i=1}^N Z_i\right) = \sum_{i=1}^N Var(Z_i)$$
+
+*the variance of the sum is the sum of the variances*
+
+---
+class: left, top
+
+## Example: Binky's ice cream pay 
+
+.pull-left[
+
+#### assume X_1 ... X_3 independent
+
+#### Use the two rules above and the representation of $Y$ in terms of $X_1 \ldots X_3$
+
+$$Var(Y) = \text{ ?}$$
+]
+
+.pull-right[
+### Extended example:
+
+#### Binky checks for ticks for a period of 5 weeks.
+
+#### call $Y_i$ the ice cream payout for week $i = 1 \ldots 5$
+
+#### How would you calculate the variance of Binky's total ice cream pay over the entire 5-week period?
+]
+
+---
+class: inverse, center, middle
+
+# Binomial distribution
+
+---
+class: left, top
+
+### Intuitive description: Counting successes in independent 'trials'
+Related to a past data homework:
+
+- you randomly sample $N = 10$ rows **with replacement** from the Beauty and the Beast script dataset
+- call a sample a 'success' if you drew a row representing one of Belle's lines
+- each draw has probability $p = 0.2$ chance of success
+
+then 
+
+>> the random variable representing the number of successes in $N$ independent trials has the **Binomial(N, p) distribution**, where $p$ is the chance of success on each individual trial
+
+---
+class: left, top
+
+### Mathematical definition
+
+$$X_1, X_2 \ldots X_N \text{ are independent Bernoulli(p)}$$
+
+$$X = \sum_{i = 1}^N X_i \quad \text{is Binomial(N, p)}$$
+
+
+.pull-left[
+### Expectation?
+
+### Variance?
+]
+.pull-right[
+### In words, what is X/N?
+
+### Expectation of X/N?
+
+### Variance of X/N?
+]
+
+---
+class: left, top
+
+### Probabilities of Binomial(N, p)
+
+$$X \text{ can take values } 0, 1, \ldots N$$
+
+$$P(X = k) ={N \choose k}p^k(1-p)^{N-k}$$
+$$= \left(\text{number of ways to get k successes}\right)\times\left(\text{probability of each way}\right)$$
+
+$${N \choose k} = \text{N choose k} = \frac{N!}{(N-k)!k!} = \frac{N(N-1)\ldots(N-k+1)}{k(k-1)\ldots1}$$
+### This makes sense because
+
+If I have $2$ successes, then I have $N-2$ failures. Since independent, 
+
+$$P(X_1 = 1 \text{ and } X_2 = 1 \text{ and } X_3 = 0 \ldots X_N = 0) = p^2 (1-p)^{N-2}$$
+
+That is only one way to get exactly 2 successes. Each way has the same probability and is disjoint of other ways, so you add the same number up ${N \choose 2}$ times.
+
+---
+class: center, middle
+
+```{r, out.height='600px', dpi=300}
+library(ggplot2)
+x <- data.frame(x = rbinom(1e4, 5, .5))
+
+ggplot(x, aes(x)) + geom_bar(fill = '#859900') + theme_bw() + 
+  ggtitle('Binomial(5, 1/2) distribution\nbar chart from sample')
+```
+
+---
+class: center, middle
+
+```{r, out.height='600px', dpi=300}
+x <- data.frame(x = rbinom(1e6, 5, .1))
+
+ggplot(x, aes(x)) + geom_bar(fill = '#859900') + theme_bw() + 
+  ggtitle('Binomial(5, 1/10) distribution\nbar chart from sample')
+```
+
+---
+class: inverse, center, middle
+
+# Geometric distribution
+
+
+---
+class: left, top
+
+### Intuitive description: Waiting for success in independent 'trials'
+
+
+- you randomly sample rows **with replacement** from the Beauty and the Beast script dataset
+- call a sample a 'success' if you drew a row representing one of Belle's lines
+- each draw has probability $p = 0.2$ chance of success
+
+then 
+
+>> the random variable representing the **number of the first successful trial** in $N$ independent trials has the **Geometric(p) distribution**, where $p$ is the chance of success on each individual trial
+
+
+#### for example, this random variable would be 6 if you first drew 5 non-Belle lines then on the 6th drew one of Belle's lines
+
+
+---
+class: left, top
+
+### Properties
+
+$X$ is Geometric(p)
+
+.pull-left[
+### Probabilities
+
+$$P(X = i) = p(1-p)^{i-1}$$
+
+### Q: Why does this make sense?
+Use the intuitive description
+
+
+]
+.pull-right[
+### Expectation
+$$E(X) = \sum_{i = 1}^\infty iP(X = i) = \frac{1}{p}$$
+
+### Variance
+
+$$E(X) = \sum_{i = 1}^\infty (i - 1/p)^2P(X = i)$$
+$$= \frac{1-p}{p^2}$$
+]
+
+---
+class: center, middle
+
+```{r, out.height='600px', dpi=300}
+x <- data.frame(x = 1+rgeom(1e4, .5))
+
+ggplot(x, aes(x)) + geom_bar(fill = '#859900') + theme_bw() + 
+  ggtitle('Geometric(1/2) distribution\nbar chart from sample')
+```
+
+---
+class: center, middle
+
+```{r, out.height='600px', dpi=300}
+x <- data.frame(x = 1+rgeom(1e4, .1))
+
+ggplot(x, aes(x)) + geom_bar(fill = '#859900') + theme_bw() + 
+  ggtitle('Geometric(1/10) distribution\nbar chart from sample')
+```
+
+---
+class: center, middle
+
+## PollEv.com/brendanbrown849
+
+## poll closes at `_________`
+
+
+---
+class: center, top
+background-image: url(gudetama2.png)
+background-size: contain
+
+???
+image credit: deviantart.com/atsushika28
