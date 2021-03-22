@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Section 9: Uniform distribution, CDFs and sampling</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Section 9: Uniform distribution, CDFs and sampling
+## <br/>STOR 155.02, Spring ’21
+### updated 2021-03-21
+
+---
+
+class: left, middle
+
+
+
+
+
+
+## What you will learn
+
+- continuous distributions: uniform, normal
+- CDFs and quantile functions
+- sampling any r.v. using the quantile function and uniform r.v.
+
+## Resources
+
+- Textbook: ch 1.7, 3.5, 4.1
+
+
+---
+class: inverse, center, middle
+
+# Continuous distributions
+
+---
+class: left, top
+
+## So far we've seen **discrete** probability distributions
+
+.pull-left[
+### 'discrete' because
+
+`$$P(X = x_i) &gt; 0$$` 
+
+for distinct outcomes `\(x_1 \ldots\)`
+
+which are often whole numbers
+]
+
+.pull-right[
+### examples
+
+`$$X \text{ is Bernoulli(p)}, \quad x_1 = 1, x_2 = 0$$`
+
+`$$X \text{ is Binomial(N, p)},$$`
+`$$\quad x_1 = 0, \,  \ldots x_{N+1} = N$$`
+`$$X \text{ is Geometric(p)},$$`
+$$ \quad x_1 = 1, x_2 = 2, \, \ldots$$
+]
+
+### Imagine this on a bar chart, with height as probability
+
+---
+class: center, middle
+
+`$$P(X = k) ={5 \choose k}p^k(1-p)^{5-k}, \quad k = 0\ldots 5$$`
+
+![](https://github.com/brendanrbrown/stor155_sp21/raw/main/notebooks/images/binom_pmf.jpeg)
+
+
+---
+class: left, top
+
+## Continuous random variables
+
+.pull-left[
+### key facts
+
+#### takes a *range* of possible values
+
+
+`$$\text{e.g., } \quad 0 \le X \le 1$$`
+
+`$$\text{e.g., } \quad -\infty &lt; X &lt; \infty$$`
+
+#### no gaps between values
+
+`$$P(X = x) = 0$$`
+
+for any particular value `\(x\)`
+]
+.pull-right[
+#### instead have a **probability density** function `\(p(x)\)` 
+
+`$$\frac{P(x \le X \le x + \Delta x)}{\Delta x} \approx p(x)$$`
+
+for a small value `\(\Delta x\)`.
+
+`$$P(X \le x)$$`
+`$$= \text{area under the curve p(y) for } y \le x$$`
+
+`$$P(a \le X \le b) = \int_a^b p(x) dx$$`
+if you remember calculus from high school.
+]
+
+
+---
+class: inverse, center, middle
+
+# Uniform distribution
+## mother of all
+
+---
+class: left, top
+
+## Uniform(0, 1) distribution
+
+`\(p(x) = 1 \quad \text{for } 0 \le x \le 1\)` and `\(0\)` for all other `\(x\)`.
+
+## Expectation, variance
+
+`$$E(X) = 1/2$$`
+
+`$$Var(X) = 1/12$$`
+
+### for those who have taken calculus
+
+$$E(X) = \int_0^1 x dx, \quad Var(X) = \int_0^1 x^2 dx - \left(\int_0^1 x dx \right)^2 $$
+
+---
+class: left, top
+## Exact density vs. histogram
+
+#### Q: Why does it make sense that `\(E(X) = 1/2\)`?
+![](https://github.com/brendanrbrown/stor155_sp21/raw/main/notebooks/images/uniform.jpeg)
+
+---
+background-image: url(gudetama.png)
+---
+class: left, top
+## Uniform(a, b) for `\(a &lt; b\)`
+
+Density is a horizontal line between `\(a\)` and `\(b\)`.
+
+`\(p(x) = \frac{1}{b-a} \quad \text{for } a \le x \le b\)` and `\(0\)` for all other `\(x\)`.
+
+## Expectation, variance
+
+`$$E(X) = (a+b)/2 = \text{ midpoint between a, b}$$`
+
+`$$Var(X) = (b-a)^2/12$$`
+
+---
+class: center, middle
+![](https://github.com/brendanrbrown/stor155_sp21/raw/main/notebooks/images/uniform_ab.jpeg)
+
+---
+class: left, top
+
+## Definition: Cumulative distribution function (CDF)
+
+`$$F_X(x) = P(X \le x) = \text{CDF of X at }x$$`
+
+.pull-left[
+### Discrete distributions
+
+`$$F_X(x_K) = \sum_{i = 1}^K P(X = x_i)$$`
+
+sum of probabilities for possible outcomes `\(x_1 \le x_2 \ldots \le x_K\)` where `\(x_K\)` is one of the possible outcomes of `\(X\)`.
+
+To calculate `\(F_X(x)\)` for `\(x\)` **between** possible values, use the next possible value below `\(x\)`.
+]
+.pull-right[
+### Continuous distributions
+
+#### Area under the curve given by density function `\(p(\cdot)\)` to the left of `\(x\)`
+]
+
+---
+class: left, top
+### CDF of Uniform(0, 1)
+`$$F_X(x) = P(X \le x) = x$$`
+
+since this is the area of the rectangle of height 1, width `\(x\)`.
+
+### CDF of Uniform(a, b)
+
+$$F_X(x) = \frac{x-a}{b-a} $$
+
+### CDF of Binomial(10, 1/2)
+
+`$$F_X(4) = \sum_{i = 1}^4 {10 \choose i}p^i(1-p)^{10-i}$$`
+
+
+#### Use a computer!
+Calculating CDFs by hand is either tedious or not really possible
+
+---
+class: left, top
+
+## Definition: Inverse CDF, aka quantile function
+
+`$$F_X^{-1}(u) = \text{uth theoretical quantile of distribution for X}$$`
+
+### Remember
+When looking at data, the `\(u\)`th quantile is the 
+
+- value of a variable 
+- so that `\(u\)` proportion of observations 
+- are less than or equal to that value.
+
+**Same idea here**
+
+---
+class: left, top
+
+## Sample from any distribution!
+
+`\(X\)` is some random variable with CDF `\(F_X\)`.
+
+`$$U \sim \text{Uniform}(0, 1)$$`
+
+then
+
+`$$F_X^{-1}(U) \text{ has the same distribution as } X$$`
+
+### how to use this
+
+Sample independent Uniform(0, 1) random variables `\(U_1 \ldots U_N\)`, then 
+
+`$$F_X^{-1}(U_1), \ldots  F_X^{-1}(U_N) \text{ gives N independent samples of } X$$`
+
+#### **This is the best (only?) way to sample random variables in Excel**
+
+---
+class: inverse, center, middle
+
+# Normal distribution
+
+---
+class: left, top
+
+## Normal(0, 1) distribution
+The famous **bell curve**
+
+`$$E(X) = 0, \quad \quad \sqrt{Var(X)} = SD(X) = 1, \quad \quad -\infty &lt; X &lt; \infty$$`
+
+![](https://github.com/brendanrbrown/stor155_sp21/raw/main/notebooks/images/normal.jpeg)
+
+---
+class: left, top
+
+## Normal(m, s)
+The **mean shifts the middle of the bell** and the **standard deviation determines how wide the bell is**.
+`$$E(X) = m, \quad \quad \quad SD(X) = s, \quad \quad -\infty &lt; X &lt; \infty$$`
+
+![](https://github.com/brendanrbrown/stor155_sp21/raw/main/notebooks/images/normal_shift.jpeg)
+
+---
+class: center, middle
+
+![](https://github.com/brendanrbrown/stor155_sp21/raw/main/notebooks/images/normal_wide.jpeg)
+
+---
+class: left, top
+
+## Convert Normal(m, s) to Normal(0, 1)
+
+If `\(X\)` is Normal(m, s) then 
+
+`$$Z = \frac{X-m}{s} \text{ is Normal(0, 1)}$$`
+
+### This is called a 'z-score'
+
+#### these will come back later in hypothesis testing
+
+#### often used in statistics classes to calculate CDFs of Normal(m, s)
+
+#### using a 'z-table'
+
+But we won't do that in this class because ... mumble mumble ... computers exist
+
+---
+class: center, middle
+
+## PollEv.com/brendanbrown849
+
+## poll closes at `_________`
+
+
+---
+class: center, top
+background-image: url(gudetama2.png)
+background-size: contain
+
+???
+image credit: deviantart.com/atsushika28
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "solarized-light",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
