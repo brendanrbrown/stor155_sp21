@@ -242,7 +242,7 @@ $$\text{upper bound} = \text{point estimate for mean} + 2\text{ s.d. of sample m
 
 ### Why is this a 95% CI?
 
-$$\text{sample mean} = \bar{X}_n \approx Normal\left(m, \frac{s}{\sqrt{n}}\right) \approx Normal\left(\hat{m}_n, \frac{\hat{s}}{\sqrt{n}}\right) $$
+$$\text{sample mean} = \bar{X}_n \approx Normal\left(m, \frac{s}{\sqrt{n}}\right) \approx Normal\left(\hat{m}_n, \frac{\hat{s}_n}{\sqrt{n}}\right) $$
 $$\text{point estimate for m} = \text{ sample average} = \hat{m}_n$$
 $$\text{point estimate for s} = \text{ sample s.d. } = \hat{s}_n$$
 
@@ -253,11 +253,11 @@ class: left, top
 
 Remember if $Z$ is Normal(0,1) then 
 
-$$\hat{s}_n Z + \hat{m}_n = Normal\left(\hat{m}_n, \frac{\hat{s}}{\sqrt{n}}\right)$$
+$$\hat{s}_n Z + \hat{m}_n = Normal\left(\hat{m}_n, \frac{\hat{s}_n}{\sqrt{n}}\right)$$
 
 ### probability $\hat{m}_n$ is in the CI
-$$P\left(\text{low} \le Normal\left(\hat{m}_n, \frac{\hat{s}}{\sqrt{n}}\right) \le \text{high}\right)$$
-$$= P\left(\frac{\text{low} - \hat{m}_n}{\hat{s}_n} \le Z \le\frac{\text{high} - \hat{m}_n}{\hat{s}_n}\right)$$
+$$P\left(\text{low} \le Normal\left(\hat{m}_n, \frac{\hat{s}_n}{\sqrt{n}}\right) \le \text{high}\right)$$
+$$= P\left(\frac{\text{low} - \hat{m}_n}{\hat{s}_n/\sqrt{n}} \le Z \le\frac{\text{high} - \hat{m}_n}{\hat{s}_n/\sqrt{n}}\right)$$
 $$= P\left(-2 \le Z \le 2\right) = P\left( Z \le 2\right) - P\left(Z \le -2\right)$$
 
 ```{r}
@@ -272,17 +272,17 @@ after `import scipy.stats as stats`
 ---
 class: left, top
 
-## Formula: To change the $pct$% CI
+## Formula: To change the pct$\times$100% CI
 
 a. Find the low quantile $z^*$
-$$P\left(Z \le -z^*\right) = pct/2$$
+$$P\left(Z \le -z^*\right) = \frac{1-pct}{2}$$
 
 Excel: `NORM.S.INV(pct/2)` and Python: `stats.norm.ppf(pct/2)` 
 
 with pct in decimals, e.g. 0.025 for 95% CI
 
 b. or find the high quantile (same $z^*$)
-$$P(Z \ge z^*) = pct/2$$
+$$P(Z \ge z^*) = 1 - \frac{1- pct}{2}$$
 c. Calculate the sample point estimates
 $$\text{low } = \hat{m}_n - z^* \frac{\hat{s}_n}{\sqrt{n}}, \quad \text{high } = \hat{m}_n + z^* \frac{\hat{s}_n}{\sqrt{n}}$$
 **Shortcut:** `NORM.INV(pct/2, mhat, shat/sqrtn)` for low
@@ -301,7 +301,7 @@ $p$ unknown success probability
 #### Suppose $n=120$ with $37$ successes in data
 a. 
 
-$$\hat{m}_n = \hat{p}_n = \frac{\text{successes}}{n} = \frac{37}{120}, \quad \frac{\hat{s}}{\sqrt{120}} = \frac{\sqrt{\hat{p}(1-\hat{p})}}{\sqrt{120}} $$
+$$\hat{m}_n = \hat{p}_n = \frac{\text{successes}}{n} = \frac{37}{120}, \quad \frac{\hat{s}_n}{\sqrt{120}} = \frac{\sqrt{\hat{p}(1-\hat{p})}}{\sqrt{120}} $$
 
 ```{r}
 knitr::kable(qnorm(.01), col.names = "-zstar")
