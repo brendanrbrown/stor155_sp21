@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Section 11: Uncertainty and confidence intervals</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Section 11: Uncertainty and confidence intervals
+## <br/>STOR 155.02, Spring ’21
+### updated 2021-04-05
+
+---
+
+class: left, middle
+
+
+
+
+
+
+## What you will learn
+
+- confidence intervals
+- example: CI for bernoulli success probability
+
+## Resources
+
+- Textbook: 5.2
+
+
+---
+class: center, top
+background-image: url(outside.jpg)
+background-size: contain
+
+---
+class: top, left
+
+### Recap
+
+
+.pull-left[
+### **parameter**
+
+#### theoretical, 'true' for the model
+
+#### think of as 'from the population'
+
+#### often unknown
+
+#### e.g. `\(N\)`, `\(p\)` of binomial, mean and s.d. of any distribution
+]
+.pull-right[
+### **estimate**
+
+#### is a statistic statistic
+
+#### calculated from data
+
+#### a guess at the unknown parameter
+
+`$$\text{sample mean estimates true mean}$$`
+
+`$$\text{sample s.d. estimates true s.d.}$$`
+]
+
+
+
+### This works because of the **law of large numbers**
+
+
+---
+class: top, left
+
+## Lessons learned from data homework
+
+.pull-left[
+### Sample means are random variables
+
+#### different mean for each sample of size 25 possible
+
+#### can talk about **the distribution of the sample mean**
+
+#### and **point estimates** of its mean and s.d.
+
+#### for a sample of size `\(n\)` (in HW it was 25)
+]
+.pull-right[
+#### random samples of the r.v. `\(X\)`, a.k.a. the 'population' distribution
+
+`$$X_1, X_2, \ldots X_n$$`
+
+#### parameters for the distribution of `\(X\)`
+
+`$$m = E(X)$$`
+
+`$$s = \sqrt{Var(X)}$$`
+
+#### sample mean of a random sample size `\(n\)`
+
+`$$\bar{X}_n = \frac{1}{n}\sum_1^n X_i$$`
+]
+
+
+---
+class: top, left
+
+.pull-left[
+### CLT tells us the **theoretical** distribution of
+
+`$$\bar{X}_n = \frac{1}{n}\sum_1^n X_i, \text{ which is a r.v.}$$`
+
+#### when `\(n\)` is large enough
+
+### To help differentiate:
+
+#### `\(\bar{X}_n\)` is the r.v. representing sample mean
+
+
+#### `\(\hat{m}_n\)` is the point estimate from *one* set of sample data
+
+]
+.pull-right[
+For `\(n\)` randomly drawn samples from of `\(X\)`,
+
+#### Q: Point estimate for `\(s\)`?
+
+#### Q: **Theoretical s.d.** of `\(\bar{X}_n\)`?
+
+#### Q: If I 
+
+- **draw data** for samples of size `\(n\)`
+- **calculate** `\(\hat{m}_n\)` for each 
+- take the **sample s.d.** of all the `\(\hat{m}_n\)` in my data
+
+#### what parameter is that a point estimate for?
+
+]
+
+---
+class: inverse, center, middle
+
+# Confidence intervals
+
+---
+class: left, top
+
+### Book gets silly: A confidence interval is
+
+&gt;&gt; '... a plausible range of values' for the true, unknown parameter
+
+and then the book kind of loses it...
+
+&gt;&gt; 'Using only a point estimate is **like fishing in a murky lake with a spear,** and using a **confidence interval is like fishing with a net.** We can throw a spear where we saw a fish, but we will probably miss. On the other hand, if we **toss a net in that area, we have a good chance of catching the fish.**'
+
+they don't even have covid lockdown brain as an excuse for this weirdness
+
+
+actually the fact that it's so dumb will help us understand the limitations of confidence intervals a little better 
+
+---
+class: center, top
+background-image: url(netfishing.jpg)
+background-size: contain
+
+### this is us
+
+
+---
+class: center, top
+background-image: url(spearfishing.jpg)
+background-size: contain
+
+### not these losers
+
+---
+class: center, top
+background-image: url(netfishing2.jpg)
+background-size: contain
+
+### we can't miss
+
+
+---
+class: center, bottom
+background-image: url(spearfishing2.png)
+background-size: contain
+
+### missers
+
+---
+class: left, top
+
+## Confidence interval (CI) basics
+
+.pull-left[
+### Definition: `\(pct\)`% CI is
+
+#### range of values
+
+#### based on sample statistics
+in this class, always with:
+
+- sample mean
+- s.d. *of the sample mean*
+
+#### so that **if we calculated this range many times**
+
+#### the **true parameter value would be in the range about `\(pct\)`% of the time**
+]
+.pull-right[
+`$$CI = (\text{lower bound}, \text{upper bound})$$` 
+#### which means
+
+- range of CI values
+- is between the lower, upper bounds
+]
+---
+class: left, top
+
+### How to make an awesome **95% confidence interval for the sample mean?**
+
+`$$\text{lower bound} = \text{point estimate mean} - 2\text{ s.d. of sample mean}$$`
+`$$\text{upper bound} = \text{point estimate for mean} + 2\text{ s.d. of sample mean}$$`
+
+### Why is this a 95% CI?
+
+$$\text{sample mean} = \bar{X}_n \approx Normal\left(m, \frac{s}{\sqrt{n}}\right) \approx Normal\left(\hat{m}_n, \frac{\hat{s}}{\sqrt{n}}\right) $$
+`$$\text{point estimate for m} = \text{ sample average} = \hat{m}_n$$`
+`$$\text{point estimate for s} = \text{ sample s.d. } = \hat{s}_n$$`
+
+continued below...
+
+---
+class: left, top
+
+Remember if `\(Z\)` is Normal(0,1) then 
+
+`$$\hat{s}_n Z + \hat{m}_n = Normal\left(\hat{m}_n, \frac{\hat{s}}{\sqrt{n}}\right)$$`
+
+### probability `\(\hat{m}_n\)` is in the CI
+`$$P\left(\text{low} \le Normal\left(\hat{m}_n, \frac{\hat{s}}{\sqrt{n}}\right) \le \text{high}\right)$$`
+`$$= P\left(\frac{\text{low} - \hat{m}_n}{\hat{s}_n} \le Z \le\frac{\text{high} - \hat{m}_n}{\hat{s}_n}\right)$$`
+`$$= P\left(-2 \le Z \le 2\right) = P\left( Z \le 2\right) - P\left(Z \le -2\right)$$`
+
+
+|          |
+|---------:|
+| 0.9544997|
+
+Excel: `NORM.DIST(2, 0, 1, TRUE) - NORM.DIST(-2, 0, 1, TRUE)`
+
+Python: `stats.norm.cdf(2) - stats.norm.cdf(-2)`
+
+after `import scipy.stats as stats`
+---
+class: left, top
+
+## Formula: To change the `\(pct\)`% CI
+
+a. Find the low quantile `\(z^*\)`
+`$$P\left(Z \le -z^*\right) = pct/2$$`
+
+Excel: `NORM.S.INV(pct/2)` and Python: `stats.norm.ppf(pct/2)` 
+
+with pct in decimals, e.g. 0.025 for 95% CI
+
+b. or find the high quantile (same `\(z^*\)`)
+`$$P(Z \ge z^*) = pct/2$$`
+c. Calculate the sample point estimates
+`$$\text{low } = \hat{m}_n - z^* \frac{\hat{s}_n}{\sqrt{n}}, \quad \text{high } = \hat{m}_n + z^* \frac{\hat{s}_n}{\sqrt{n}}$$`
+**Shortcut:** `NORM.INV(pct/2, mhat, shat/sqrtn)` for low
+
+**Shortcut:** `stats.norm.interval(pct, mhat, shat/sqrtn)` both
+
+---
+class: left, top
+
+## Special example: 98% CI for p success
+
+`\(X_1 \ldots X_n\)` random samples from `\(Bernoulli(p)\)`
+
+`\(p\)` unknown success probability
+
+#### Suppose `\(n=120\)` with `\(37\)` successes in data
+a. 
+
+$$\hat{m}_n = \hat{p}_n = \frac{\text{successes}}{n} = \frac{37}{120}, \quad \frac{\hat{s}}{\sqrt{120}} = \frac{\sqrt{\hat{p}(1-\hat{p})}}{\sqrt{120}} $$
+
+
+|    -zstar|
+|---------:|
+| -2.326348|
+
+c. 
+
+`$$\text{low} = \frac{37}{120} - 2.33 \times \frac{\sqrt{\hat{p}(1-\hat{p})}}{\sqrt{120}} \approx 0.210$$`
+
+---
+class: left, top
+
+# **Asides:** 
+
+### Avoid terminology confusion
+
+#### 'standard error' = 's.d. of the mean'
+
+### Any time someone (book) tells you 'z-table,' you say
+
+#### don't make computer sad
+
+#### and use table;
+
+#### for table is bad.
+
+---
+class: inverse, center, middle
+
+# What can go wrong?
+
+
+### i mean if the point estimate is the spear and the interval is the net...
+
+### seems like we need **both the spear and the net**
+
+### but then what are we even doing
+
+### i don't think people even do that in real life to catch fish
+
+---
+class: center, top
+background-image: url(fishingfail.png)
+background-size: contain
+
+---
+class: left, top
+
+## Your interpretation can go wrong:
+
+### for a `\(pct\)`% CI
+
+.pull-left[
+### Yes!
+
+#### if we were to repeat this experiment/survey 
+
+#### meaning a sample of size `\(n\)` many times, 
+
+#### `\(pct\)`% of the time the true mean would be in the interval
+
+
+]
+.pull-right[
+### No!
+
+#### there is a `\(pct\)`% probability the true value is in my interval
+
+#### or 'we are pct % confidence the true parameter is between'
+
+#### is this just pedantic nonsense? 
+
+#### makes more sense in hypothesis testing: next time
+]
+
+
+---
+background-image: url(gudetama.png)
+---
+class: left, top
+
+## Assumptions can go wrong
+
+### Sample not random
+
+#### so point estimates are off, CLT and LLN are not valid
+
+#### you threw the spear all wrong, so to speak
+
+### Sample not big enough
+
+#### again CLT and LLN might not be valid 
+
+#### s.d of the mean in particular might be too large
+
+#### basically your net is messed up
+
+thanks textbook authors this whole analogy thing was fun
+
+---
+class: right, bottom
+
+### image credits
+
+#### RagingOceans (raccoons spear fishing), LawrenceCornellPhoto (river) 
+
+#### at deviantart
+
+---
+class: center, middle
+
+## PollEv.com/brendanbrown849
+
+## poll closes at `_________`
+
+
+---
+class: center, top
+background-image: url(gudetama2.png)
+background-size: contain
+
+???
+image credit: deviantart.com/atsushika28
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "solarized-light",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
