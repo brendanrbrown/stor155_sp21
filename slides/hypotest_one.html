@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Section 12: Hypothesis testing and p values</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Section 12: Hypothesis testing and p values
+## <br/>STOR 155.02, Spring ’21
+### updated 2021-04-13
+
+---
+
+class: left, middle
+
+
+
+
+
+
+## What you will learn
+
+- is in the title
+
+## Resources
+
+- Textbook: 5.3
+
+---
+class: inverse, left, middle
+
+## **Eyes on the schedule**
+
+### Four lectures remain
+
+- April 13, 20, 27, May 4
+
+### Final project due May 11, 3p.m. **sharp**
+
+- **no excuses for lateness** 
+- **except** by approved university exam excuses or exceptional circumstances
+- assigned one week prior
+
+---
+class: left, top
+
+## Formula: pct (decimal) CI
+
+a. Find the low quantile `\(z^*\)`
+`$$P\left(Z \le -z^*\right) = \frac{1-pct}{2}$$`
+
+Excel: `NORM.S.INV(.5*(1-pct))` and Python: `stats.norm.ppf(.5*(1-pct))` 
+
+with pct in decimals, e.g. 0.025 for 95% CI
+
+b. or find the high quantile (same `\(z^*\)`)
+`$$P(Z \ge z^*) = 1 - \frac{1- pct}{2}$$`
+c. Calculate the sample point estimates
+`$$\text{low } = \hat{m}_n - z^* \frac{\hat{s}_n}{\sqrt{n}}, \quad \text{high } = \hat{m}_n + z^* \frac{\hat{s}_n}{\sqrt{n}}$$`
+**Shortcut:** `NORM.INV(.5*(1-pct), mhat, shat/sqrtn)` for low
+
+**Shortcut:** `stats.norm.interval(pct, mhat, shat/sqrtn)` both
+
+---
+class: center, top
+background-image: url(spacenet.jpeg)
+background-size: contain
+
+### need spear *and* net!
+
+#### thank your classmate for making everything right
+
+---
+class: inverse, center, middle
+
+# Hypothesis testing
+
+---
+class: left, top
+
+## Starter example
+
+.pull-left[
+#### Adults in Turkey
+- **random sample**
+- mean caloric intake of **3500 calories / day** 
+- with s.d. of 500 calories
+
+(Source: FAO, 2006-08 via Wikipedia)
+
+
+ 
+
+]
+.pull-right[
+#### Sample of 100 Ankara University students 
+
+- **random sample**
+- average intake of **3450 calories / day**
+
+]
+
+### Conclude Ankara U. student average calories is different from Turkish population average?
+
+- could happen if **mean for Ankara U. students is in reality smaller**
+
+- or if we got a different average **just because of randomness in sampling**
+
+---
+class: left, top
+
+### **Assume** averages are the same
+
+### What is the probability we would get the sample average 3450 or farther away from 3500 from a random sample size 100?
+
+We have point estimates for the true mean (3500) and standard deviation (500).
+
+By the CLT we know the distribution of the sample mean `\(\bar{X}_{100}\)` is approximately Normal `\((3500, \frac{500}{\sqrt{100}})\)`,
+
+`$$P\left(\frac{|\bar{X}_{100} - 3500|}{50} &gt; \frac{|3450 - 3500|}{50}\right) \approx P\left(Z &gt; 1 \text{ or } Z &lt; -1\right)$$`
+
+`$$= 2 P\left(Z &gt; 1\right) \approx 0.32$$`
+
+That's a pretty high **chance a random sample of size 100 would have average like the one we saw, or smaller**!
+
+Why the 2 above? Area under bell curve for `\(z &lt; -1\)` is the same as for `\(z &gt; 1\)`. 
+---
+class: left, top
+
+### Hypothesis test recipe
+
+#### Model 
+Data `\(x_1 \ldots x_n\)` sampled randomly from an unknown population r.v. `\(X\)`, with true mean `\(m\)` and s.d. `\(s\)`.
+
+#### Research question
+Do our data give strong evidence that 
+`$$m \neq m_0$$`
+for some number `\(m_0\)`? 
+
+Could also consider asking a one-sided question, `\(m &lt; m_0\)` or `\(m &gt; m_0\)`.
+
+#### Point estimates
+`\(\hat{s}_n\)`, `\(\hat{m}_n\)` are point estimates for `\(s, m\)` based on the data, e.g. `\(\hat{m}_n\)` is the sample mean of `\(x_1 \ldots x_n\)`.
+
+---
+class: left, top
+
+#### `\(H_0\)` 'null hypothesis', `\(H_1\)` 'alternative'
+
+.pull-left[
+- `\(H_0\)` is the statement you want to reject (if possible)
+- using the hypothesis test
+
+in this class **will always be about true mean `\(m\)` being equal to some other number `\(m_0\)`**
+]
+.pull-right[
+`$$H_0: m = m_0, \quad \quad H_1: m \neq m_0$$`
+
+or can consider `\(H_1: m &lt; m_0\)`, `\(H_1: m &gt; m_0\)`.
+
+Will try to **'reject `\(H_0\)` in favor of `\(H_1\)`'**
+]
+
+#### Make confidence interval for `\(\bar{X}_n\)` assuming `\(H_0\)` is true
+
+`$$\text{low } = \hat{m}_n - z^* \frac{\hat{s}_n}{\sqrt{n}}, \quad \text{high } = \hat{m}_n + z^* \frac{\hat{s}_n}{\sqrt{n}}$$`
+
+#### If `\(m_0 &gt;\)` high or `\(m_0 &lt;\)` low, **reject `\(H_0\)` in favor of `\(H_1\)`**
+
+---
+class: left, top
+
+### Which pct to choose for CI?
+
+Rejection with higher pct confidence interval gives stronger evidence
+
+### 'Significance level' of hypothesis test
+
+`\(\alpha = \text{ test significance level } = 1 - \text{ pct used in CI}\)`
+
+#### intuitively
+
+Rejecting a hypothesis test with `\(\alpha\)` level means if we redid this experiment we would **incorrectly reject `\(H_0\)` only `\(\alpha\)` percent of the time**
+
+'incorrectly reject' means our test tells us to reject `\(H_0\)` when in fact it is true
+
+### Example
+
+`$$\alpha = 0.05 \text{ level corresponds to 0.95 CI}$$`
+
+
+
+---
+background-image: url(gudetama.png)
+---
+class: left, top
+
+## Revisit example
+True mean and s.d. daily caloric intake for Ankara students are the unknown numbers `\(m, s\)`. 
+
+#### Hypotheses
+`\(m_0 = 3500\)`
+
+`$$H_0: m = 3500, \quad \quad H_1: m \neq 3500$$`
+
+#### Confidence interval pct = 0.95
+Assume we get the same standard deviation for Ankara students, `\(\hat{s}_n = 500\)`.
+
+`$$\text{low } = 3450 - z^* \frac{500}{\sqrt{100}}, \quad \text{high } = 3450 + z^* \frac{500}{\sqrt{100}}$$`
+
+rounding to 3 decimals
+`$$(\text{low}, \text{high}) = (2470.018, 4429.982)$$`
+
+---
+class: left, top
+
+### Q: Reject `\(H_0\)`?
+
+### Q: Significance level `\(\alpha\)`?
+
+### Q: If you consider a CI with pct `\(=0.98\)` would your answer change?
+
+---
+class: inverse, center, middle
+
+# p-values
+
+---
+class: left, top
+
+### Definition
+
+&gt;&gt; "The p-value is the probability of observing data at least as favorable to the alternative hypothesis as our current data set, **if the null hypothesis is true.**"
+
+&gt;&gt; -- textbook ch 5.3.4
+
+### Translation
+
+`$$H_0: m = m_0, \quad H_1: m\neq m_0$$`
+
+&gt;&gt; p-value is the probability of observing data that is at least `\(|\hat{m}_n - m_0|\)` away from `\(m_0\)` as what we saw...
+
+&gt;&gt; meaning chance that if we redrew our sample we would see a sample mean at least as different from `\(m_0\)` as our current estimate `\(\hat{m}_n\)`
+
+---
+class: left, top
+
+### Calculation
+#### 'two-sided test'
+`$$H_1: m \neq m_0$$`
+
+`$$p = P\left(\frac{|\bar{X}_{n} - m_0|}{\hat{s}_n / \sqrt{n}} &gt; \frac{|\hat{m}_n - m_0|}{\hat{s}_n / \sqrt{n}}\right) = 2 P\left(Z &lt; -\frac{|\hat{m}_n - m_0|}{\hat{s}_n / \sqrt{n}}\right)$$`
+
+#### 'one-sided test'
+`$$H_1: m &lt; m_0$$`
+`$$p = P\left(\frac{\bar{X}_{n} - m_0}{\hat{s}_n / \sqrt{n}} &lt; \frac{\hat{m}_n - m_0}{\hat{s}_n / \sqrt{n}}\right) = P\left(Z &lt; \frac{\hat{m}_n - m_0}{\hat{s}_n / \sqrt{n}}\right)$$`
+Often you'll see cutoff value referred to as the **'z-statistic'**. These are for the two-sided or one-sided tests:
+
+`$$\frac{|\hat{m}_n - m_0|}{\hat{s}_n / \sqrt{n}} \text{ or } \frac{\hat{m}_n - m_0}{\hat{s}_n / \sqrt{n}}$$`
+---
+class: left, top
+
+### Accept-reject hypothesis test using p values
+
+`$$H_0: m = m_0, \quad H_1: m \neq m_0$$`
+
+$$\alpha = \text{ test significance level} $$
+
+#### reject `\(H_0\)` if
+
+`$$p \le \alpha$$`
+
+This setup holds for one-sided tests too.
+
+### Flip it: Significance in terms of p-value 
+
+**p-value is the largest significance level at which you could reject the null**
+
+---
+class: left, top
+
+### How small a significance level / p-value is good enough?
+
+#### Very much **depends on the context**
+
+.pull-left[
+#### **choose smaller `\(\alpha\)` when** you really don't want to reject incorrectly
+
+#### Higgs boson discovery:
+
+`$$\alpha = 3\times 10^{-7} \approx 1/3,500,000$$`
+
+[Scientific American blog post](https://blogs.scientificamerican.com/observations/five-sigmawhats-that/)
+]
+.pull-right[
+#### **generic standards** you will see
+
+`$$\alpha = 0.05, 0.1$$`
+
+#### But why? Should instead think carefully about what makes sense for the question.
+
+]
+
+---
+class: left, top
+
+### Example for poll
+
+&gt;&gt; It is suspected that patients treated with a certain drug have systolic blood pressures (SBP) that are lower on average than 115, which is the mean for people not treated.  
+
+&gt;&gt; A random sample of 20 patients is treated with the drug.  Their sample average SBP is 112 and the sample s.d. is 10.
+
+
+---
+class: center, middle
+
+## PollEv.com/brendanbrown849
+
+## poll closes at `_________`
+
+
+---
+class: center, top
+background-image: url(gudetama2.png)
+background-size: contain
+
+???
+image credit: deviantart.com/atsushika28
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "solarized-light",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
