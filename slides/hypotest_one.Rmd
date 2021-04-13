@@ -99,7 +99,7 @@ class: left, top
 
 .pull-left[
 #### Adults in Turkey
-- **random sample**
+- suppose you know the **true parameter values**
 - mean caloric intake of **3500 calories / day** 
 - with s.d. of 500 calories
 
