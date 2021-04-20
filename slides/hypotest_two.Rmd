@@ -250,27 +250,37 @@ ev0 <- n0 * m0
 s10 <- -(m1 - m0) / qnorm(0.002)
 s <- s10 / sqrt(1/n1 + 1/n0)
 
-d <- data.frame('n' = round(c(n0, n1), 2), "cancer_per_100k" = round(c(ev0, ev1), 2),
-                'mhat' = c(m1, m0), 'shat' = round(c(s, s), 2), 
+d <- data.frame('mhat' = c(m0, m1), 
                 'shat_mean' = round(c(s/sqrt(n1), s/sqrt(n0)), 2),
                 row.names = c("control", "treatment"))
+
 knitr::kable(d)
 ```
 
-### Units in the data
+---
+class: left,top
+### Notes on the data
 I've simplified a few things to make it fit in our class's discussion, but **our conclusions (p-values) will match theirs.**
 
-**`n` is in 100,000 'person years',** one year of life for a person in the group. Think of this as one observation. `shat` values are $\hat{s}_{n_0}$ and $\hat{s}_{n_1}$ used in the calculation of $\hat{s}_{n_1, n_0}$. `shat_mean` is `shat` / `sqrt(n)`.
+#### Sample sizes and cancer rates
+I've hidden these because they are more confusing than helpful here. Sample sizes in the data really are numbers of 'person years.' 
+
+The cancer incident rates shown above are cases of cancer per 100k --- **adjusted for age** in a way that is not relevant for the class. This is the number they use for the study's conclusions, so I use it here.
+
+But if I were to put the number of person-years as well, we'd get a kind of funny-looking comparison between cancer rates and sample size.
+
+Sample standard deviations are backed out of the data to give the same p-value as one of the main conclusions of the study.
 
 ---
-class: left, top
+class: left,top
 
 ### One-sided test
-Analogous to one-sided version of one-sample test.
+#### Analogous to one-sided version of one-sample test.
 
 $$H_1: m_1 - m_0 > 0$$
 
 $$p = P\left(Z < -\frac{\hat{m}_{n_1} - \hat{m}_{n_0}}{\hat{s}_{n_1, n_0}}\right) = P\left(Z < - \frac{68 - 55}{\sqrt{3.25^2 + 3.14^2}}\right)$$
+
 ```{r}
 p <- data.frame(p = pnorm((55-68)/sqrt(3.25^2 + 3.14^2)))
 knitr::kable(p)

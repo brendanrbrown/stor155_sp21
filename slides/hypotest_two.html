@@ -59,6 +59,8 @@ a large-scale study in Denmark from a few years ago
 #### How to answer this question?
 
 ---
+background-image: url(gudetama.png)
+---
 class: left, top
 
 ## Mathematical formulation
@@ -94,8 +96,6 @@ from unknown r.v. `\(Y\)`
 $$m_0 = E(Y) $$
 ]
 
----
-background-image: url(gudetama.png)
 ---
 class: left, top
 
@@ -229,25 +229,35 @@ From [breast cancer study in Denmark](https://www.nejm.org/doi/full/10.1056/NEJM
 - **Control**: Never used hormonal contraception
 
 
-|          |     n| cancer_per_100k| mhat|  shat| shat_mean|
-|:---------|-----:|---------------:|----:|-----:|---------:|
-|control   | 78.15|         4298.35|   68| 27.76|      3.25|
-|treatment | 73.08|         4969.74|   55| 27.76|      3.14|
-
-### Units in the data
-I've simplified a few things to make it fit in our class's discussion, but **our conclusions (p-values) will match theirs.**
-
-**`n` is in 100,000 'person years',** one year of life for a person in the group. Think of this as one observation. `shat` values are `\(\hat{s}_{n_0}\)` and `\(\hat{s}_{n_1}\)` used in the calculation of `\(\hat{s}_{n_1, n_0}\)`. `shat_mean` is `shat` / `sqrt(n)`.
+|          | mhat| shat_mean|
+|:---------|----:|---------:|
+|control   |   55|      3.25|
+|treatment |   68|      3.14|
 
 ---
-class: left, top
+class: left,top
+### Notes on the data
+I've simplified a few things to make it fit in our class's discussion, but **our conclusions (p-values) will match theirs.**
+
+#### Sample sizes and cancer rates
+I've hidden these because they are more confusing than helpful here. Sample sizes in the data really are numbers of 'person years.' 
+
+The cancer incident rates shown above are cases of cancer per 100k --- **adjusted for age** in a way that is not relevant for the class. This is the number they use for the study's conclusions, so I use it here.
+
+But if I were to put the number of person-years as well, we'd get a kind of funny-looking comparison between cancer rates and sample size.
+
+Sample standard deviations are backed out of the data to give the same p-value as one of the main conclusions of the study.
+
+---
+class: left,top
 
 ### One-sided test
-Analogous to one-sided version of one-sample test.
+#### Analogous to one-sided version of one-sample test.
 
 `$$H_1: m_1 - m_0 &gt; 0$$`
 
 `$$p = P\left(Z &lt; -\frac{\hat{m}_{n_1} - \hat{m}_{n_0}}{\hat{s}_{n_1, n_0}}\right) = P\left(Z &lt; - \frac{68 - 55}{\sqrt{3.25^2 + 3.14^2}}\right)$$`
+
 
 |         p|
 |---------:|
