@@ -228,9 +228,9 @@ ps <- p_diffmean(d, children, some_affairs)
 
 ps$data %>% 
   bind_rows %>% 
-  select(children, mhat) %>%
+  select(children, mhat, shat, n) %>%
   mutate(young = c(FALSE, FALSE, TRUE, TRUE)) %>% 
-  select(young, children, mhat) %>%
+  select(young, children, mhat, shat, n) %>%
   knitr::kable(.)
 ```
 
