@@ -1,0 +1,313 @@
+---
+title: "Section 13: What can go wrong"
+subtitle: "<br/>STOR 155.02, Spring '21"
+date: "updated `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    yolo:
+      img: gudetama.png
+      times: 1
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: solarized-light
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+class: left, middle
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#https://pkg.garrickadenbuie.com/xaringanthemer/articles/themes.html
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
+library(xaringanthemer)
+library(showtext)
+
+style_solarized_light()
+# style_mono_accent(
+#   base_color = "#1c5253",
+#   header_font_google = google_font("Josefin Sans"),
+#   text_font_google   = google_font("Montserrat", "300", "300i"),
+#   code_font_google   = google_font("Fira Mono")
+# )
+```
+
+
+
+## What you will learn
+
+- is in the title
+
+## Resources
+
+- links in slides
+
+---
+class: inverse, left, middle
+
+### Two lectures remain
+
+- April 27, May 4
+
+### Last data/webassign homeworks are this week
+
+### May 6 class period is **extended OH for final**
+
+### Final project due May 11, 3p.m. **sharp**
+
+---
+class: inverse, left, middle
+
+### Time to review: Common mistakes **keep costing you points**
+
+#### **Q5, hw8:** Compare the sample s.d. of the mean and the s.d. derived from the CLT formula. Explain **why** your answers do or not not make sense together using concepts from class.
+
+.pull-left[
+#### **:-(**
+"It makes sense that they are different because the CLT uses the sample standard deviation in the calculation."
+
+]
+.pull-left[
+#### **:-)** thanks to Kaylee Tackett
+"My answer for Q4 makes sense because the CLT [says] a sampling distribution of the sampling means approaches a normal distribution as the sample size gets larger, irregardless of the shape of the distribution. ... Our computations with the CLT is only valid on a size of data that is substantial enough to reflect our actual population."
+]
+
+
+---
+class: left, top
+
+.pull-left[
+#### We've done a bunch of examples showing the kinds of questions you can answer with hypothesis tests.
+
+#### But those **idealized situations don't always work out so well.**
+
+#### There are many cases in published research where conclusions drawn from hypothesis tests are nearly worthless.
+]
+
+.pull-right[
+### Goal of this lecture
+
+- get a feel for how to spot problems with hypothesis testing
+
+- explore assumptions a bit more
+
+#### Some examples give broader problems than just for hypothesis testing, such as bad data
+]
+
+---
+class: inverse, center, middle
+
+# 'p-hacking'
+
+---
+class: left, top
+
+### [538 p-hacking demo](https://projects.fivethirtyeight.com/p-hacking/)
+
+#### **Question:** Is the the U.S. economy better when Democrats are in office, or worse?
+
+#### Data
+
+- who's in office: President, Senate, House, governors
+- economy: GDP, inflation, employment, stock prices
+
+.pull-left[
+#### Multiple **difference of means tests** you could do
+
+|group (Dem v Rep) | outcome|
+|---|---|
+| President | GDP |
+| Senate | GDP |
+| President | employment |
+
+etc.
+]
+.pull-right[
+#### **p-hacking**
+
+- finding a group and outcome combo
+- so that the difference of means test is statistically significant
+- at some 'standard' level
+
+easy when the **question is so poorly defined**
+]
+
+
+---
+class: left, top
+
+### This is actually a problem...
+
+#### ["Women are more likely to wear red or pink when at peak fertility"](https://slate.com/technology/2013/07/statistics-and-psychology-multiple-comparisons-give-spurious-results.html)
+
+#### ["Men with larger arms of higher socio-economic status more likely to oppose wealth distribution policies"](https://www.americanscientist.org/article/the-statistical-crisis-in-science)
+
+#### ["Kids are more likely to eat fruit if it has Sesame Street stickers on it"](https://www.buzzfeed.com/stephaniemlee/brian-wansink-cornell-p-hacking)
+
+#### ["People who perform 'power poses' subsequently have increased testosterone and cortisol levels"](https://slate.com/technology/2016/01/amy-cuddys-power-pose-research-is-the-latest-example-of-scientific-overreach.html)
+
+[(original 'power pose' research paper here)](https://www0.gsb.columbia.edu/mygsb/faculty/research/pubfiles/4679/power.poses_.PS_.2010.pdf)
+
+```
+    _________________________
+    < y u click bait tho? >
+    -------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
+
+
+---
+class: left, top
+background-image: url(power_poses.jpg)
+background-size: contain
+
+---
+class: left, top
+
+### Let's p-hack the affairs data
+```{r, warning = FALSE, message = F}
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(rlang))
+
+d <- readr::read_csv('https://vincentarelbundock.github.io/Rdatasets/csv/AER/Affairs.csv')
+d <- mutate(d, some_affairs = affairs > 0, young = age <= 32)
+```
+
+```{r}
+p_calc <- function(dhat) {
+  z <- abs(dhat$mhat[1] - dhat$mhat[2])/sqrt(sum(dhat$sehat^2)[1])
+  p <- 2*pnorm(-z)
+}
+
+p_diffmean <- function(d, gp_var, var) {
+  var <- enquo(var)
+  gp_var <- enquo(gp_var)
+  
+  if (as_label(gp_var) == "young") {
+    dhat <- select(d, young, !!var) %>%
+    group_by(young)
+  } else {
+    
+    dhat <- select(d, young, !!gp_var, !!var) %>%
+    group_by(young, !!gp_var)
+  }
+  
+  
+  
+  dhat <- dhat %>%
+    summarise_all(list(mhat  = mean, shat = sd, n = length)) %>%
+    mutate(sehat = shat / sqrt(n)) %>% # summarise drops one group, only young remains
+    group_nest %>%
+    mutate(p = lapply(data, p_calc) %>% unlist)
+  
+  dhat
+}
+```
+
+
+#### this is what you got in homework
+$p$ value for two-sided hypothesis test of some affairs in `young` (age <=32) vs not young groups.
+```{r}
+p_diffmean(d, young, some_affairs)$p
+```
+
+#### **but we demand significance!**
+
+Looking for significant difference of `some_affairs` between people with and without children **within each `young`** group
+
+
+```{r}
+# ugh actually shouldn't have used nse so I could more easily apply. else you're in nse hell
+ps <- p_diffmean(d, children, some_affairs)
+
+ps$data %>% 
+  bind_rows %>% 
+  select(children, mhat) %>%
+  mutate(young = c(FALSE, FALSE, TRUE, TRUE)) %>% 
+  select(young, children, mhat) %>%
+  knitr::kable(.)
+```
+
+---
+class: center, middle
+
+```{r}
+ps %>% select(-data) %>% knitr::kable(.)
+```
+
+![](https://media.giphy.com/media/3ohuPpJ3YIQmcOVyJW/giphy.gif)
+
+---
+class: left, top
+background-image: url(power_poses.jpg)
+background-size: contain
+
+---
+class: left, top
+
+### Why is this a problem?
+
+#### You've gone in search of a conclusion your data will support
+
+#### rather than asking whether your data support a pre-determined conclusion
+
+>> There are many roads to statistical significance; if data are gathered with no preconceptions at all, **statistical significance can obviously be obtained even from pure noise** by the simple means of repeatedly performing comparisons ...
+
+>> Andrew Gelman, Eric Loken, [in the American Scientist](https://www.americanscientist.org/article/the-statistical-crisis-in-science)
+
+#### Conclusions determined by p-hacking probably are not replicatable in a different study
+
+#### which was part of what [exposed power poses as fraud](https://en.wikipedia.org/wiki/Power_posing#Replication_failure)
+
+#### and exposed [Brian Wansink's masterclass in p-hacking](https://www.buzzfeednews.com/article/stephaniemlee/brian-wansink-cornell-p-hacking)
+
+---
+class: inverse, center, middle
+
+# Garbage data
+
+---
+class: left, top
+
+### Bad data $\longrightarrow$ bad conclusions
+
+#### article: "Automated inference on criminality using face images"
+
+#### data
+Authors use ~1,100 'non-criminal' face pictures scraped from the internet and ~700 mug shots of convicted criminals.
+
+#### claim
+Authors "empirically establish the validity of automated face-induced inference on criminality … discriminating structural features for predicting criminality have been found by machine learning." The algorithm found that **criminals have shorter distances between inner corners of the eyes** (d), smaller angles between nose and mouth corner, and more upper-lip curvature.
+
+#### problem: wouldn't you **frown in your mugshot**, and **smile in your office headshot**?
+
+[Source: Calling bullshit](http://callingbullshit.org/case_studies/case_study_criminal_machine_learning.html)
+
+---
+class: inverse, center, middle
+
+# Moral: Don't be bad
+
+At least try not to be bad. It's usually not so hard.
+
+---
+class: center, middle
+
+## PollEv.com/brendanbrown849
+
+## poll closes at `_________`
+
+
+---
+class: center, top
+background-image: url(gudetama2.png)
+background-size: contain
+
+???
+image credit: deviantart.com/atsushika28
