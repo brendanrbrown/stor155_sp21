@@ -89,13 +89,11 @@ In the pictures below, the `value` number is plotted in each 30x30 square from l
 If this topic interests you, check out the organization [Trees Durham](https://www.treesdurham.org/durhamtreeresearch.html) and some research posted there.
 
 #### images
-to get a sense of what this looks like
+to get a sense of what this data look like when plotted as raster images
 
 ![](./canopy/durham.jpeg?raw=True)
 
 ![](./canopy/orange.jpeg?raw=True)
-
-<img src=“https://github.com/brendanrbrown/stor155_sp21/raw/main/final_project/canopy/durham.jpeg” />
 
 #### Dataset size and excel
 
