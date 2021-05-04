@@ -82,14 +82,15 @@ We will be exploring the proportion of tree coverage in Orange and Durham counti
 
 To understand what tree canopy coverage means: Imagine a bird's eye view of the county from above, picturing it on a flat surface (even though the curvature of the earth actually is relevant this scale.) Trees will show up as green blobs obscuring some portion of the earth's surface, though not all green is from trees of course.  Non-tree areas might include bodies of water, parking lots, malls, rock formations etc. The estimated proportion of area covered by trees in this view, within each 30x30 meter square, is the `value` variable.
 
-In the pictures below, the `value` number is plotted in each 30x30 square from light to dark. The light green border around each county represents `value == 0`. There are some cells with `value == 0` within the county, for example in the middle of a lake. Darker shades represent higher `value`.
 
 
 #### tree canopy research
 If this topic interests you, check out the organization [Trees Durham](https://www.treesdurham.org/durhamtreeresearch.html) and some research posted there.
 
 #### images
-to get a sense of what this data look like when plotted as raster images
+To get a sense of what this data look like when plotted as raster images:
+
+In the pictures below, the `value` number is plotted in each 30x30 square from light to dark. The light green border around each county represents `value == 0`. There are some cells with `value == 0` within the county, for example in the middle of a lake. Darker shades represent higher `value`.
 
 ![](./canopy/durham.jpeg?raw=True)
 
