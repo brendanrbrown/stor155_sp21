@@ -183,18 +183,13 @@ Your plot must be reasonably legible and have a decent title.
 
 - **make a scatterplot** of mean `age` vs  mean `annual_base_salary` from the data in Q5.
 
-## Q8 (2.5 points)
-Your plot must be reasonably legible and have a decent title.
+## Q8 (5 points)
 
-- **make a scatterplot** of mean `age` vs  mean `annual_base_salary` from the data in Q5.
-
-## Q9 (5 points)
-
-Calculate the correlation between mean `age` and mean `annual_base_salary`, the two variables plotted in Q8.
+Calculate the correlation between mean `age` and mean `annual_base_salary`, the two variables plotted in Q7.
 
 - **explain briefly** why the correlation calculated does or does not make sense with the plot, explicitly using concepts from class
 
-## Q10 (7.5 points)
+## Q9  (10 points)
 You may complete this and Q9 together.
 
 - **calculate** correlations between all possible pairs of the subgroup mean summary variables in Q5.
