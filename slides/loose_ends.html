@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Section 14: Loose ends</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Section 14: Loose ends
+## <br/>STOR 155.02, Spring ’21
+### updated 2021-05-04
+
+---
+
+class: left, middle
+
+
+
+
+
+
+## What you will learn
+
+- t-tests
+- why t-tests aren't worth much for this course
+
+## Resources
+
+- Textbook ch 6.3, 6.4 and 7.1
+
+---
+class: inverse, center, middle
+
+#### it's the end of the semester, finally
+
+![](https://media.giphy.com/media/l4EoQBv7CuYNOObTi/giphy.gif)
+
+#### **please do the course evaluations**
+
+---
+class: inverse, left, middle
+
+### Final project 
+
+#### due May 11, 3p.m. **sharp**
+
+#### instructions posted right after class
+
+### Special office hours
+
+#### 1:45-2:45 pm Thursday
+
+#### for final project Qs only
+
+---
+class: inverse, center, middle
+
+# Small-sample hypothesis tests
+
+
+
+
+---
+class: left, top
+
+### So the Central Limit Theorem is pretty good
+
+### but what if your **sample is too small** for the CLT to hold?
+
+
+.pull-left[
+#### Some rules of thumb from textbook
+
+**For n random samples from Bernoulli(p)**
+
+`$$np \ge 10, \quad \text{and} \quad n(1-p) \ge 10$$`
+
+meaning you see enough successes and enough failures. Textbook ch 7.1.1.
+]
+.pull-right[
+#### but rules of thumb are &amp;#128169;
+
+**better to evaluate CLT assumptions** (might be hard)
+
+**better still to get more random samples** (often less hard)
+]
+
+---
+class: left, top
+
+### Easy fix: Swap normal distribution for t-distribution
+For example in a **difference of means test**
+`$$p = 2 P\left(T_d &lt; -\frac{|\hat{m}_{n_1} - \hat{m}_{n_0}|}{\hat{s}_{n_1, n_0}}\right)$$`
+where `\(T_d\)` is a t-distributed random variable with `\(d\)` 'degrees of freedom'. `\(d = n_1 + n_2 - 2\)` in the two-sample difference of means test.
+
+A **similar formula holds for the one-sample test**, replacing the standard normal `\(Z\)` with `\(T_d\)` where `\(d = n-1\)`.
+
+### with a computer
+
+#### Excel: `T.DIST`
+
+#### Python: `scipy.stats.t`
+
+and there are even baked-in functions for doing t-tests or z-tests. But **make sure you use them correctly** as there are several versions with various options.
+
+
+---
+class: inverse, center, middle
+
+# I &amp;#128158; CLT
+
+---
+class: left, top
+
+### but really, this isn't worth much talk
+
+the t-distribution is almost identical to the normal for any reasonable sample size
+
+&lt;img src="loose_ends_files/figure-html/unnamed-chunk-1-1.png" width="800" height="500" /&gt;
+
+
+---
+background-image: url(gudetama.png)
+---
+class: left, top
+
+### You should just **get more data** rather than worry about the t distribution
+
+.pull-left[
+### worry more about
+
+#### independence assumption of sampling
+
+#### more complex requirements for more complex hypothesis test methods
+
+#### which can be **hard in practice to evaluate**
+]
+.pull-right[
+### in rare cases, small sample sizes are unavoidable
+
+#### rare events
+
+#### more generally: when data collection is very very expensive
+]
+
+---
+class: center, top
+background-image: url(gudetama2.png)
+background-size: contain
+
+???
+image credit: deviantart.com/atsushika28
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "solarized-light",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

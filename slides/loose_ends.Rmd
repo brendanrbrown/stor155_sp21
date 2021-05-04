@@ -1,0 +1,185 @@
+---
+title: "Section 14: Loose ends"
+subtitle: "<br/>STOR 155.02, Spring '21"
+date: "updated `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    yolo:
+      img: gudetama.png
+      times: 1
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: solarized-light
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+class: left, middle
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+#https://pkg.garrickadenbuie.com/xaringanthemer/articles/themes.html
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
+library(xaringanthemer)
+library(showtext)
+
+style_solarized_light()
+# style_mono_accent(
+#   base_color = "#1c5253",
+#   header_font_google = google_font("Josefin Sans"),
+#   text_font_google   = google_font("Montserrat", "300", "300i"),
+#   code_font_google   = google_font("Fira Mono")
+# )
+```
+
+
+
+## What you will learn
+
+- t-tests
+- why t-tests aren't worth much for this course
+
+## Resources
+
+- Textbook ch 6.3, 6.4 and 7.1
+
+---
+class: inverse, center, middle
+
+#### it's the end of the semester, finally
+
+![](https://media.giphy.com/media/l4EoQBv7CuYNOObTi/giphy.gif)
+
+#### **please do the course evaluations**
+
+---
+class: inverse, left, middle
+
+### Final project 
+
+#### due May 11, 3p.m. **sharp**
+
+#### instructions posted right after class
+
+### Special office hours
+
+#### 1:45-2:45 pm Thursday
+
+#### for final project Qs only
+
+---
+class: inverse, center, middle
+
+# Small-sample hypothesis tests
+
+
+
+
+---
+class: left, top
+
+### So the Central Limit Theorem is pretty good
+
+### but what if your **sample is too small** for the CLT to hold?
+
+
+.pull-left[
+#### Some rules of thumb from textbook
+
+**For n random samples from Bernoulli(p)**
+
+$$np \ge 10, \quad \text{and} \quad n(1-p) \ge 10$$
+
+meaning you see enough successes and enough failures. Textbook ch 7.1.1.
+]
+.pull-right[
+#### but rules of thumb are &#128169;
+
+**better to evaluate CLT assumptions** (might be hard)
+
+**better still to get more random samples** (often less hard)
+]
+
+---
+class: left, top
+
+### Easy fix: Swap normal distribution for t-distribution
+For example in a **difference of means test**
+$$p = 2 P\left(T_d < -\frac{|\hat{m}_{n_1} - \hat{m}_{n_0}|}{\hat{s}_{n_1, n_0}}\right)$$
+where $T_d$ is a t-distributed random variable with $d$ 'degrees of freedom'. $d = n_1 + n_2 - 2$ in the two-sample difference of means test.
+
+A **similar formula holds for the one-sample test**, replacing the standard normal $Z$ with $T_d$ where $d = n-1$.
+
+### with a computer
+
+#### Excel: `T.DIST`
+
+#### Python: `scipy.stats.t`
+
+and there are even baked-in functions for doing t-tests or z-tests. But **make sure you use them correctly** as there are several versions with various options.
+
+
+---
+class: inverse, center, middle
+
+# I &#128158; CLT
+
+---
+class: left, top
+
+### but really, this isn't worth much talk
+
+the t-distribution is almost identical to the normal for any reasonable sample size
+
+```{r, dpi=300, out.height=500, out.width=800}
+library(ggplot2)
+library(dplyr)
+
+x <- seq(-4, 4, by = .1)
+df <- seq(2, 32, by = 5)
+
+d <- lapply(df, FUN = function(s) dt(x, s))
+nm <- paste("df", df, sep = "_")
+# for sorting and plotting in correct color order
+nm[c(1, 2)] <- c("df_02", "df_07")
+names(d) <- nm
+
+d <- bind_cols(d) %>% mutate(x = x, z = dnorm(x)) %>%
+  tidyr::pivot_longer(cols = !x, names_to = "distribution") %>%
+  arrange(distribution)
+
+ggplot(d, aes(x, value, color = distribution)) + geom_line(lwd = 1.5) +
+  scale_color_brewer(palette = "Oranges")
+```
+
+
+---
+class: left, top
+
+### You should just **get more data** rather than worry about the t distribution
+
+.pull-left[
+### worry more about
+
+#### independence assumption of sampling
+
+#### more complex requirements for more complex hypothesis test methods
+
+#### which can be **hard in practice to evaluate**
+]
+.pull-right[
+### in rare cases, small sample sizes are unavoidable
+
+#### rare events
+
+#### more generally: when data collection is very very expensive
+]
+
+---
+class: center, top
+background-image: url(gudetama2.png)
+background-size: contain
+
+???
+image credit: deviantart.com/atsushika28
