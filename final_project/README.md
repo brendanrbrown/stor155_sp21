@@ -1,4 +1,4 @@
-# Midterm project instructions
+# Final project instructions
 
 ### due Tuesday, May 11 at 3 pm *sharp*
 
@@ -98,7 +98,7 @@ In the pictures below, the `value` number is plotted in each 30x30 square from l
 
 #### Dataset size and excel
 
-The full dataset has more than 1.5 M rows. This exceeds [Excel's maximum capacity](https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3) of about 1.05 rows.
+The full dataset has more than 1.5 M rows. This exceeds [Excel's maximum capacity](https://support.microsoft.com/en-us/office/excel-specifications-and-limits-1672b34d-7043-467e-8e27-269d656771c3) of about 1.05M rows.
 
 Excel users are given a randomly sampled set of 1M + 1 rows.
 
@@ -165,39 +165,39 @@ Excel users: You should copy-paste the values after sorting the data into a sepa
 
 Within groups defined by `job_category`, calculate
 
-- median `age`
-- median `annual_base_salary`
-- median `empl_years`
+- mean `age`
+- mean `annual_base_salary`
+- mean `empl_years`
 - number of observations
 
 ## Q6 (7.5 points)
 
-- **List** the top 10 job categories by median of `annual_base_salary`, using your answer to Q5
+- **List** the top 10 job categories by mean of `annual_base_salary`, using your answer to Q5
 - **Compare** this list with the top-10 list from Q4. Specifically, are the job categories represented the same? How can you explain the differences or similarities?
 
-Hint: Use the definition of the median.
+Hint: Use the definition of the mean.
 
 
 ## Q7 (5 points)
 Your plot must be reasonably legible and have a decent title.
 
-- **make a scatterplot** of median `age` vs  median `annual_base_salary` from the data in Q5.
+- **make a scatterplot** of mean `age` vs  mean `annual_base_salary` from the data in Q5.
 
 ## Q8 (2.5 points)
 Your plot must be reasonably legible and have a decent title.
 
-- **make a scatterplot** of median `age` vs  median `annual_base_salary` from the data in Q5.
+- **make a scatterplot** of mean `age` vs  mean `annual_base_salary` from the data in Q5.
 
 ## Q9 (5 points)
 
-Calculate the correlation between median `age` and median `annual_base_salary`, the two variables plotted in Q8.
+Calculate the correlation between mean `age` and mean `annual_base_salary`, the two variables plotted in Q8.
 
 - **explain briefly** why the correlation calculated does or does not make sense with the plot, explicitly using concepts from class
 
 ## Q10 (7.5 points)
 You may complete this and Q9 together.
 
-- **calculate** correlations between all possible pairs of the subgroup median summary variables in Q5.
+- **calculate** correlations between all possible pairs of the subgroup mean summary variables in Q5.
 - based on that information, **explain briefly** whether `empl_years` is or is not a possible 'confounding' or 'lurking' variable for the purpose of understanding correlation between `age` and `annual_base_salary`.
 
 Again: Be as specific as possible and use concepts from class.
