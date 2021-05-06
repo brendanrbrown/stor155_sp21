@@ -232,7 +232,7 @@ For the 'appropriate distribution' determined in Q2:
 You can still get full credit for this question even if your answer to Q2 is wrong, so long as this answer is consistent with your answer in Q2.
 
 
-## Q3 (10 points)
+## Q4 (10 points)
 
 - **create a random sample** from the dataset of size **100 observations**. I will refer to this as 'sample 0'
 - **create a random sample** from the dataset of size **20 observations**. I will refer to this as sample 1.
@@ -242,12 +242,12 @@ You can still get full credit for this question even if your answer to Q2 is wro
     - the number of samples from each county
     - the standard error for the appropriate sample size --- in other words, give a point estimate for the standard deviation for the mean of a random sample of size 100 and 20, respectively
     
-## Q4 (10 points)
+## Q5 (10 points)
 
-- for each of your two samples, **calculate a 92 percent confidence interval for the Durham county mean of `value`** centered at the point estimate of the mean calculated in Q3
+- for each of your two samples, **calculate a 92 percent confidence interval for the Durham county mean of `value`** centered at the point estimate of the mean calculated in Q4
 - compare these two confidence intervals, and **explain why they differ** in size --- if in fact they do
 
-## Q5 (10 points)
+## Q6 (10 points)
 Remember the two-sided difference of means test has null hypothesis `H_0: m_1 = m_0` and alternative that `m_1` is not equal to `m_0`.
 
 - for each of your two samples, **calculate a p-value for the two-sided normal distribution-based difference of means test** between the average tree cover between Orange and Durham counties
