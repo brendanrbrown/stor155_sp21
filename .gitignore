@@ -1,3 +1,4 @@
 *.ipynb_checkpoints
 project/project_assignments.csv
 grades
+__pycache__
